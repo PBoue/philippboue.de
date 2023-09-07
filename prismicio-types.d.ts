@@ -30,6 +30,31 @@ export interface SettingsDocumentDataNavigationItem {
 }
 
 /**
+ * Item in *Settings → Footer Links*
+ */
+export interface SettingsDocumentDataFooterLinksItem {
+  /**
+   * Link field in *Settings → Footer Links*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.footer_links[].link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField;
+
+  /**
+   * Label field in *Settings → Footer Links*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.footer_links[].label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  label: prismic.KeyTextField;
+}
+
+/**
  * Content for Settings documents
  */
 interface SettingsDocumentData {
@@ -76,6 +101,19 @@ interface SettingsDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#group
    */
   navigation: prismic.GroupField<Simplify<SettingsDocumentDataNavigationItem>>;
+
+  /**
+   * Footer Links field in *Settings*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.footer_links[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  footer_links: prismic.GroupField<
+    Simplify<SettingsDocumentDataFooterLinksItem>
+  >;
 }
 
 /**
@@ -94,7 +132,76 @@ export type SettingsDocument<Lang extends string = string> =
     Lang
   >;
 
-export type AllDocumentTypes = SettingsDocument;
+/**
+ * Item in *Social → Social Plattforms*
+ */
+export interface SocialDocumentDataSocialPlattformsItem {
+  /**
+   * Label field in *Social → Social Plattforms*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: social.social_plattforms[].label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  label: prismic.KeyTextField;
+
+  /**
+   * Link field in *Social → Social Plattforms*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: social.social_plattforms[].link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField;
+
+  /**
+   * SVG Icon Path field in *Social → Social Plattforms*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: social.social_plattforms[].svg_icon_path
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  svg_icon_path: prismic.KeyTextField;
+}
+
+/**
+ * Content for Social documents
+ */
+interface SocialDocumentData {
+  /**
+   * Social Plattforms field in *Social*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: social.social_plattforms[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  social_plattforms: prismic.GroupField<
+    Simplify<SocialDocumentDataSocialPlattformsItem>
+  >;
+}
+
+/**
+ * Social document from Prismic
+ *
+ * - **API ID**: `social`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type SocialDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<SocialDocumentData>,
+    "social",
+    Lang
+  >;
+
+export type AllDocumentTypes = SettingsDocument | SocialDocument;
 
 declare module "@prismicio/client" {
   interface CreateClient {
@@ -109,6 +216,10 @@ declare module "@prismicio/client" {
       SettingsDocument,
       SettingsDocumentData,
       SettingsDocumentDataNavigationItem,
+      SettingsDocumentDataFooterLinksItem,
+      SocialDocument,
+      SocialDocumentData,
+      SocialDocumentDataSocialPlattformsItem,
       AllDocumentTypes,
     };
   }

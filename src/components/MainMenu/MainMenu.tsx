@@ -6,6 +6,7 @@ import { useTheme } from "next-themes";
 import { useAnimate, stagger } from "framer-motion";
 import * as Switch from "@radix-ui/react-switch";
 import { UrlObject } from "url";
+import { PrismicNextLink } from "@prismicio/next";
 
 const Path = (props: any) => (
 	<path fill="transparent" strokeWidth="3" strokeLinecap="round" {...props} />
@@ -76,9 +77,6 @@ export const MainMenu: FC<MainMenuProps> = ({ items }) => {
 		if (theme === "dark") swapTheme = "light";
 		setTheme(swapTheme);
 	}
-
-	console.log(items);
-
 	return (
 		<div ref={scope}>
 			<button onClick={() => setIsOpen(!isOpen)} className="relative z-50">
@@ -113,9 +111,12 @@ export const MainMenu: FC<MainMenuProps> = ({ items }) => {
 							key={i}
 							className="block text-black font-bold text-3xl p-5 will-change-transform"
 						>
-							<Link href={item.link.url} onClick={() => setIsOpen(!isOpen)}>
+							<PrismicNextLink
+								href={item.link.url}
+								onClick={() => setIsOpen(!isOpen)}
+							>
 								{item.label}
-							</Link>
+							</PrismicNextLink>
 						</li>
 					))}
 					<li className="block text-black font-bold text-3xl p-5 will-change-transform">

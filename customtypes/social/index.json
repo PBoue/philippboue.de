@@ -1,0 +1,41 @@
+{
+  "id": "social",
+  "label": "Social",
+  "format": "custom",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "social_plattforms": {
+        "type": "Group",
+        "config": {
+          "label": "Social Plattforms",
+          "fields": {
+            "label": {
+              "type": "Text",
+              "config": {
+                "label": "Label",
+                "placeholder": ""
+              }
+            },
+            "link": {
+              "type": "Link",
+              "config": {
+                "label": "Link",
+                "placeholder": "",
+                "select": null
+              }
+            },
+            "svg_icon_path": {
+              "type": "Text",
+              "config": {
+                "label": "SVG Icon Path",
+                "placeholder": ""
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
