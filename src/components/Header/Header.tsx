@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { createClient } from "@/prismicio";
-import { Logo, MainMenu } from "@/components";
+import { Logo, MainMenu, ProgressBar } from "@/components";
 
 export interface HeaderProps {}
 
@@ -17,6 +17,7 @@ export const Header = async () => {
 					</Link>
 					<MainMenu items={settings.data.navigation} />
 				</div>
+				<ProgressBar />
 			</header>
 		</>
 	);
