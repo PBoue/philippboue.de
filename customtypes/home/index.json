@@ -26,6 +26,9 @@
             },
             "call_to_action": {
               "type": "SharedSlice"
+            },
+            "main_stage": {
+              "type": "SharedSlice"
             }
           }
         }

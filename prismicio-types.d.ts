@@ -258,7 +258,8 @@ export type DegreeDocument<Lang extends string = string> =
 type HomeDocumentDataSlicesSlice =
   | ServicesSlice
   | ReferencesSlice
-  | CallToActionSlice;
+  | CallToActionSlice
+  | MainStageSlice;
 
 /**
  * Content for Home documents
@@ -1135,6 +1136,51 @@ export type CallToActionSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Primary content in *MainStage → Primary*
+ */
+export interface MainStageSliceDefaultPrimary {
+  /**
+   * Headline field in *MainStage → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: main_stage.primary.headline
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  headline: prismic.TitleField;
+}
+
+/**
+ * Default variation for MainStage Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type MainStageSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<MainStageSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *MainStage*
+ */
+type MainStageSliceVariation = MainStageSliceDefault;
+
+/**
+ * MainStage Shared Slice
+ *
+ * - **API ID**: `main_stage`
+ * - **Description**: MainStage
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type MainStageSlice = prismic.SharedSlice<
+  "main_stage",
+  MainStageSliceVariation
+>;
+
+/**
  * Primary content in *References → Primary*
  */
 export interface ReferencesSliceDefaultPrimary {
@@ -1355,6 +1401,10 @@ declare module "@prismicio/client" {
       CallToActionSliceDefaultPrimary,
       CallToActionSliceVariation,
       CallToActionSliceDefault,
+      MainStageSlice,
+      MainStageSliceDefaultPrimary,
+      MainStageSliceVariation,
+      MainStageSliceDefault,
       ReferencesSlice,
       ReferencesSliceDefaultPrimary,
       ReferencesSliceDefaultItem,

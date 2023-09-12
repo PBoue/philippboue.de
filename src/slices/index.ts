@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 
 export const components = {
   call_to_action: dynamic(() => import("./CallToAction")),
+  main_stage: dynamic(() => import("./MainStage")),
   references: dynamic(() => import("./References")),
   services: dynamic(() => import("./Services")),
 };
