@@ -255,7 +255,10 @@ interface DegreeDocumentData {
 export type DegreeDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<DegreeDocumentData>, "degree", Lang>;
 
-type HomeDocumentDataSlicesSlice = ServicesSlice | ReferencesSlice;
+type HomeDocumentDataSlicesSlice =
+  | ServicesSlice
+  | ReferencesSlice
+  | CallToActionSlice;
 
 /**
  * Content for Home documents
@@ -328,7 +331,10 @@ interface HomeDocumentData {
 export type HomeDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<HomeDocumentData>, "home", Lang>;
 
-type PageDocumentDataSlicesSlice = ServicesSlice | ReferencesSlice;
+type PageDocumentDataSlicesSlice =
+  | ServicesSlice
+  | ReferencesSlice
+  | CallToActionSlice;
 
 /**
  * Content for Page documents
@@ -1054,6 +1060,81 @@ export type AllDocumentTypes =
   | TestimonialDocument;
 
 /**
+ * Primary content in *CallToAction → Primary*
+ */
+export interface CallToActionSliceDefaultPrimary {
+  /**
+   * Heading field in *CallToAction → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: call_to_action.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  heading: prismic.TitleField;
+
+  /**
+   * Subline field in *CallToAction → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: call_to_action.primary.subline
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  subline: prismic.RichTextField;
+
+  /**
+   * Link field in *CallToAction → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: call_to_action.primary.link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField;
+
+  /**
+   * Link Text field in *CallToAction → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: call_to_action.primary.link_text
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  link_text: prismic.KeyTextField;
+}
+
+/**
+ * Default variation for CallToAction Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type CallToActionSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<CallToActionSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *CallToAction*
+ */
+type CallToActionSliceVariation = CallToActionSliceDefault;
+
+/**
+ * CallToAction Shared Slice
+ *
+ * - **API ID**: `call_to_action`
+ * - **Description**: CallToAction
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type CallToActionSlice = prismic.SharedSlice<
+  "call_to_action",
+  CallToActionSliceVariation
+>;
+
+/**
  * Primary content in *References → Primary*
  */
 export interface ReferencesSliceDefaultPrimary {
@@ -1270,6 +1351,10 @@ declare module "@prismicio/client" {
       TestimonialDocument,
       TestimonialDocumentData,
       AllDocumentTypes,
+      CallToActionSlice,
+      CallToActionSliceDefaultPrimary,
+      CallToActionSliceVariation,
+      CallToActionSliceDefault,
       ReferencesSlice,
       ReferencesSliceDefaultPrimary,
       ReferencesSliceDefaultItem,

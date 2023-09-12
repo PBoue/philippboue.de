@@ -37,7 +37,13 @@ export default function RootLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<html lang="en" className={clsx(montserrat.variable)}>
+		<html
+			lang="en"
+			className={clsx(
+				montserrat.variable,
+				"min-h-screen bg-white dark:bg-black"
+			)}
+		>
 			<body>
 				<Header />
 				{children}
