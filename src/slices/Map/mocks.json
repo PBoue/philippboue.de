@@ -1,0 +1,31 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"headline": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading2",
+						"content": {
+							"text": "Order"
+						}
+					}
+				]
+			},
+			"subline": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Reprehenderit ullamco fugiat quis id consequat elit cillum esse laboris nisi ipsum sit aliqua occaecat et. Nisi irure proident consequat pariatur dolor esse incididunt ipsum. Ex do incididunt incididunt."
+						}
+					}
+				]
+			}
+		},
+		"items": []
+	}
+]

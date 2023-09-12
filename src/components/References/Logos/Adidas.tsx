@@ -8,7 +8,7 @@ export function Adidas() {
 			fill="none"
 			xmlns="http://www.w3.org/2000/svg"
 		>
-			<g clip-path="url(#clip0_375_1325)">
+			<g clipPath="url(#clip0_375_1325)">
 				<path
 					className="fill-black dark:fill-white"
 					id="Vector"

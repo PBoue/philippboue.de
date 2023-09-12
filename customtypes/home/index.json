@@ -29,6 +29,9 @@
             },
             "main_stage": {
               "type": "SharedSlice"
+            },
+            "map": {
+              "type": "SharedSlice"
             }
           }
         }

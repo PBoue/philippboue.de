@@ -259,7 +259,8 @@ type HomeDocumentDataSlicesSlice =
   | ServicesSlice
   | ReferencesSlice
   | CallToActionSlice
-  | MainStageSlice;
+  | MainStageSlice
+  | MapSlice;
 
 /**
  * Content for Home documents
@@ -335,7 +336,9 @@ export type HomeDocument<Lang extends string = string> =
 type PageDocumentDataSlicesSlice =
   | ServicesSlice
   | ReferencesSlice
-  | CallToActionSlice;
+  | CallToActionSlice
+  | MapSlice
+  | MainStageSlice;
 
 /**
  * Content for Page documents
@@ -1181,6 +1184,58 @@ export type MainStageSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Primary content in *Map → Primary*
+ */
+export interface MapSliceDefaultPrimary {
+  /**
+   * Headline field in *Map → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: map.primary.headline
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  headline: prismic.TitleField;
+
+  /**
+   * Subline field in *Map → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: map.primary.subline
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  subline: prismic.RichTextField;
+}
+
+/**
+ * Default variation for Map Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type MapSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<MapSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Map*
+ */
+type MapSliceVariation = MapSliceDefault;
+
+/**
+ * Map Shared Slice
+ *
+ * - **API ID**: `map`
+ * - **Description**: Map
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type MapSlice = prismic.SharedSlice<"map", MapSliceVariation>;
+
+/**
  * Primary content in *References → Primary*
  */
 export interface ReferencesSliceDefaultPrimary {
@@ -1405,6 +1460,10 @@ declare module "@prismicio/client" {
       MainStageSliceDefaultPrimary,
       MainStageSliceVariation,
       MainStageSliceDefault,
+      MapSlice,
+      MapSliceDefaultPrimary,
+      MapSliceVariation,
+      MapSliceDefault,
       ReferencesSlice,
       ReferencesSliceDefaultPrimary,
       ReferencesSliceDefaultItem,
