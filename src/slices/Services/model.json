@@ -23,6 +23,19 @@
         }
       },
       "items": {
+        "icon": {
+          "type": "Select",
+          "config": {
+            "label": "Icon",
+            "placeholder": "",
+            "options": [
+              "target",
+              "edit",
+              "code"
+            ],
+            "default_value": "target"
+          }
+        },
         "title": {
           "type": "StructuredText",
           "config": {
@@ -30,14 +43,6 @@
             "placeholder": "Service Title",
             "allowTargetBlank": true,
             "single": "heading3"
-          }
-        },
-        "icon": {
-          "type": "Image",
-          "config": {
-            "label": "Icon",
-            "constraint": {},
-            "thumbnails": []
           }
         },
         "description": {

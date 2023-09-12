@@ -1,0 +1,121 @@
+{
+  "id": "company",
+  "label": "Company",
+  "format": "custom",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "name": {
+        "type": "Text",
+        "config": {
+          "label": "Name",
+          "placeholder": ""
+        }
+      },
+      "uid": {
+        "config": {
+          "label": "UID"
+        },
+        "type": "UID"
+      },
+      "logo": {
+        "type": "Text",
+        "config": {
+          "label": "Logo",
+          "placeholder": ""
+        }
+      },
+      "name_update": {
+        "type": "Text",
+        "config": {
+          "label": "Name Update",
+          "placeholder": ""
+        }
+      },
+      "short_name": {
+        "type": "Text",
+        "config": {
+          "label": "Short Name",
+          "placeholder": ""
+        }
+      },
+      "location": {
+        "type": "GeoPoint",
+        "config": {
+          "label": "Location"
+        }
+      },
+      "street": {
+        "type": "Text",
+        "config": {
+          "label": "Street",
+          "placeholder": ""
+        }
+      },
+      "zip": {
+        "type": "Text",
+        "config": {
+          "label": "ZIP",
+          "placeholder": ""
+        }
+      },
+      "city": {
+        "type": "Text",
+        "config": {
+          "label": "City",
+          "placeholder": ""
+        }
+      },
+      "industry": {
+        "type": "Select",
+        "config": {
+          "label": "Industry",
+          "placeholder": "",
+          "options": [
+            "Agency",
+            "Automotive",
+            "Consumer Goods",
+            "Education",
+            "Energy",
+            "Finance",
+            "Logistics",
+            "Insurance",
+            "Media",
+            "Software",
+            "Telco",
+            "Travel"
+          ]
+        }
+      },
+      "country": {
+        "type": "Select",
+        "config": {
+          "label": "Country",
+          "placeholder": "",
+          "options": [
+            "Germany",
+            "UK",
+            "Spain",
+            "Netherlands",
+            "Belgium",
+            "France",
+            "Denmark",
+            "Switzerland",
+            "United States",
+            "Luxemburg"
+          ],
+          "default_value": "Germany"
+        }
+      },
+      "image": {
+        "type": "Image",
+        "config": {
+          "label": "Image",
+          "constraint": {},
+          "thumbnails": []
+        }
+      }
+    }
+  }
+}

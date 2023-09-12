@@ -3,5 +3,6 @@
 import dynamic from "next/dynamic";
 
 export const components = {
+  references: dynamic(() => import("./References")),
   services: dynamic(() => import("./Services")),
 };

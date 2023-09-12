@@ -20,6 +20,7 @@ export const Logo: FC<LogoProps> = ({}) => {
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
 			>
+				<text>PBO</text>
 				<motion.path
 					initial={{ opacity: 0, scale: 0.5 }}
 					animate={{ opacity: 1, scale: 1 }}

@@ -1,0 +1,122 @@
+{
+  "id": "project",
+  "label": "Project",
+  "format": "custom",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "name": {
+        "type": "Text",
+        "config": {
+          "label": "Name",
+          "placeholder": "Project Name"
+        }
+      },
+      "uid": {
+        "config": {
+          "label": "UID"
+        },
+        "type": "UID"
+      },
+      "excerpt": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Excerpt",
+          "placeholder": "Project Excerpt",
+          "allowTargetBlank": true,
+          "multi": "paragraph,hyperlink"
+        }
+      },
+      "link": {
+        "type": "Link",
+        "config": {
+          "label": "Link",
+          "placeholder": "Link to project",
+          "allowTargetBlank": false,
+          "select": null
+        }
+      },
+      "screenshot": {
+        "type": "Image",
+        "config": {
+          "label": "Screenshot",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "startdate": {
+        "type": "Date",
+        "config": {
+          "label": "Startdate",
+          "placeholder": ""
+        }
+      },
+      "enddate": {
+        "type": "Date",
+        "config": {
+          "label": "Enddate",
+          "placeholder": ""
+        }
+      },
+      "management": {
+        "type": "Number",
+        "config": {
+          "label": "Management",
+          "placeholder": ""
+        }
+      },
+      "design": {
+        "type": "Number",
+        "config": {
+          "label": "Design",
+          "placeholder": ""
+        }
+      },
+      "code": {
+        "type": "Number",
+        "config": {
+          "label": "Code",
+          "placeholder": ""
+        }
+      },
+      "logo": {
+        "type": "Select",
+        "config": {
+          "label": "Logo",
+          "placeholder": "",
+          "options": [
+            "actimonda",
+            "adidas",
+            "alphaneun",
+            "antena3",
+            "axa",
+            "bmg",
+            "congstar",
+            "coremedia",
+            "deutschebahn",
+            "deutschepost",
+            "deutschetelekom",
+            "dailytelegraph"
+          ]
+        }
+      },
+      "company": {
+        "type": "Link",
+        "config": {
+          "label": "Company",
+          "select": "document",
+          "customtypes": ["company"]
+        }
+      },
+      "employer": {
+        "type": "Link",
+        "config": {
+          "label": "Employer",
+          "select": "document",
+          "customtypes": ["company"]
+        }
+      }
+    }
+  }
+}
