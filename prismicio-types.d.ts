@@ -260,7 +260,8 @@ type HomeDocumentDataSlicesSlice =
   | ReferencesSlice
   | CallToActionSlice
   | MainStageSlice
-  | MapSlice;
+  | MapSlice
+  | KeyValueTableSlice;
 
 /**
  * Content for Home documents
@@ -338,7 +339,8 @@ type PageDocumentDataSlicesSlice =
   | ReferencesSlice
   | CallToActionSlice
   | MapSlice
-  | MainStageSlice;
+  | MainStageSlice
+  | KeyValueTableSlice;
 
 /**
  * Content for Page documents
@@ -1139,6 +1141,86 @@ export type CallToActionSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Primary content in *KeyValueTable → Primary*
+ */
+export interface KeyValueTableSliceDefaultPrimary {
+  /**
+   * Headline field in *KeyValueTable → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: key_value_table.primary.headline
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  headline: prismic.TitleField;
+
+  /**
+   * Subline field in *KeyValueTable → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: key_value_table.primary.subline
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  subline: prismic.RichTextField;
+}
+
+/**
+ * Primary content in *KeyValueTable → Items*
+ */
+export interface KeyValueTableSliceDefaultItem {
+  /**
+   * Label field in *KeyValueTable → Items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: key_value_table.items[].label
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  label: prismic.RichTextField;
+
+  /**
+   * Value field in *KeyValueTable → Items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: key_value_table.items[].value
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  value: prismic.RichTextField;
+}
+
+/**
+ * Default variation for KeyValueTable Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type KeyValueTableSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<KeyValueTableSliceDefaultPrimary>,
+  Simplify<KeyValueTableSliceDefaultItem>
+>;
+
+/**
+ * Slice variation for *KeyValueTable*
+ */
+type KeyValueTableSliceVariation = KeyValueTableSliceDefault;
+
+/**
+ * KeyValueTable Shared Slice
+ *
+ * - **API ID**: `key_value_table`
+ * - **Description**: KeyValueTable
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type KeyValueTableSlice = prismic.SharedSlice<
+  "key_value_table",
+  KeyValueTableSliceVariation
+>;
+
+/**
  * Primary content in *MainStage → Primary*
  */
 export interface MainStageSliceDefaultPrimary {
@@ -1456,6 +1538,11 @@ declare module "@prismicio/client" {
       CallToActionSliceDefaultPrimary,
       CallToActionSliceVariation,
       CallToActionSliceDefault,
+      KeyValueTableSlice,
+      KeyValueTableSliceDefaultPrimary,
+      KeyValueTableSliceDefaultItem,
+      KeyValueTableSliceVariation,
+      KeyValueTableSliceDefault,
       MainStageSlice,
       MainStageSliceDefaultPrimary,
       MainStageSliceVariation,

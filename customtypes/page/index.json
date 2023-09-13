@@ -40,6 +40,9 @@
             },
             "main_stage": {
               "type": "SharedSlice"
+            },
+            "key_value_table": {
+              "type": "SharedSlice"
             }
           }
         }

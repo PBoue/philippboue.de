@@ -32,6 +32,9 @@
             },
             "map": {
               "type": "SharedSlice"
+            },
+            "key_value_table": {
+              "type": "SharedSlice"
             }
           }
         }

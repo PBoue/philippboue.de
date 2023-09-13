@@ -15,7 +15,7 @@ export function Container({
 	return (
 		<Comp
 			className={clsx(
-				"flex bg-white dark:bg-black items-center justify-between pt-10 md:pt-40 pb-10 md:pb-40 overflow-hidden w-screen",
+				"flex bg-white dark:bg-black items-center justify-between pt-10 md:pt-20 pb-10 md:pb-20 overflow-hidden w-screen",
 				className
 			)}
 			{...restProps}
