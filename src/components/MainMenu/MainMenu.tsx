@@ -1,26 +1,25 @@
 "use client";
 
-import { FC, useState, useEffect } from "react";
-import Link from "next/link";
-import { useTheme } from "next-themes";
+import { FC, useEffect } from "react";
 import { useAnimate, stagger } from "framer-motion";
-import * as Switch from "@radix-ui/react-switch";
 import { UrlObject } from "url";
 import { PrismicNextLink } from "@prismicio/next";
+import { useGlobalContext } from "@/app/Context/store";
+import { ThemeToggle } from "../ThemeToggle/ThemeToggle";
 
 const Path = (props: any) => (
 	<path fill="transparent" strokeWidth="3" strokeLinecap="round" {...props} />
 );
 
-function useMenuAnimation(isOpen: boolean) {
+function useMenuAnimation(mainMenu: boolean) {
 	const [scope, animate] = useAnimate();
 
 	useEffect(() => {
-		const menuAnimations = isOpen
+		const menuAnimations = mainMenu
 			? [
 					[
 						"nav",
-						{ transform: "translateX(0)" },
+						{ transform: "translateX(0)", opacity: 100 },
 						{ ease: [0.08, 0.65, 0.53, 0.96], duration: 0.6 },
 					],
 					[
@@ -35,24 +34,28 @@ function useMenuAnimation(isOpen: boolean) {
 						{ transform: "scale(0.5)", opacity: 0, filter: "blur(10px)" },
 						{ delay: stagger(0.05, { from: "last" }), at: "<" },
 					],
-					["nav", { transform: "translateX(100%)" }, { at: "-0.1" }],
+					[
+						"nav",
+						{ transform: "translateX(100%)", opacity: 0 },
+						{ at: "-0.1" },
+					],
 			  ];
 
 		animate([
 			[
 				"path.top",
-				{ d: isOpen ? "M 3 16.5 L 17 2.5" : "M 2 2.5 L 20 2.5" },
+				{ d: mainMenu ? "M 3 16.5 L 17 2.5" : "M 2 2.5 L 20 2.5" },
 				{ at: "<" },
 			],
-			["path.middle", { opacity: isOpen ? 0 : 1 }, { at: "<" }],
+			["path.middle", { opacity: mainMenu ? 0 : 1 }, { at: "<" }],
 			[
 				"path.bottom",
-				{ d: isOpen ? "M 3 2.5 L 17 16.346" : "M 2 16.346 L 20 16.346" },
+				{ d: mainMenu ? "M 3 2.5 L 17 16.346" : "M 2 16.346 L 20 16.346" },
 				{ at: "<" },
 			],
 			...menuAnimations,
 		]);
-	}, [isOpen, animate]);
+	}, [mainMenu, animate]);
 
 	return scope;
 }
@@ -68,18 +71,12 @@ interface MainMenuProps {
 }
 
 export const MainMenu: FC<MainMenuProps> = ({ items }) => {
-	const [isOpen, setIsOpen] = useState(false);
-	const scope = useMenuAnimation(isOpen);
-	const { theme, setTheme } = useTheme();
+	const { mainMenu, setMainMenu } = useGlobalContext();
+	const scope = useMenuAnimation(mainMenu);
 
-	function toggleTheme() {
-		let swapTheme = "dark";
-		if (theme === "dark") swapTheme = "light";
-		setTheme(swapTheme);
-	}
 	return (
 		<div ref={scope}>
-			<button onClick={() => setIsOpen(!isOpen)} className="relative z-50">
+			<button onClick={() => setMainMenu(!mainMenu)} className="relative z-50">
 				<svg width="23" height="18" viewBox="0 0 23 18">
 					<Path
 						d="M 2 2.5 L 20 2.5"
@@ -104,7 +101,7 @@ export const MainMenu: FC<MainMenuProps> = ({ items }) => {
 					/>
 				</svg>
 			</button>
-			<nav className="fixed top-0 right-0 bottom-0 w-2/4 h-screen z-40 bg-cyan pt-10 will-change-transform -translate-x-full">
+			<nav className="fixed top-0 right-0 bottom-0 w-2/4 h-screen z-40 bg-cyan pt-10 will-change-transform -translate-x-full opacity-0">
 				<ul className="flex flex-col gap-5 p-5 list-none m-0">
 					{items.map((item, i) => (
 						<li
@@ -113,28 +110,13 @@ export const MainMenu: FC<MainMenuProps> = ({ items }) => {
 						>
 							<PrismicNextLink
 								href={item.link.url}
-								onClick={() => setIsOpen(!isOpen)}
+								onClick={() => setMainMenu(!mainMenu)}
 							>
 								{item.label}
 							</PrismicNextLink>
 						</li>
 					))}
-					<li className="block text-black font-bold text-3xl p-5 will-change-transform">
-						<form>
-							<div className="flex items-center">
-								<label className="text-black pr-10" htmlFor="dark-mode">
-									Dark mode
-								</label>
-								<Switch.Root
-									className=" w-20 h-10 bg-black dark:bg-white data-[state=checked]:bg-green/25 relative rounded-3xl shadow-sm"
-									id="dark-mode"
-									onCheckedChange={() => toggleTheme()}
-								>
-									<Switch.Thumb className="block w-9 h-9 bg-black rounded-full shadow-xs translate-x-1 will-change-transform data-[state=checked]:translate-x-10 ease-in-out duration-500" />
-								</Switch.Root>
-							</div>
-						</form>
-					</li>
+					<ThemeToggle />
 				</ul>
 			</nav>
 		</div>

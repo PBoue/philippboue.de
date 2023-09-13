@@ -4,6 +4,7 @@ import clsx from "clsx";
 import { Montserrat } from "next/font/google";
 import { createClient } from "@/prismicio";
 import { Header, Footer } from "@/components";
+import { GlobalContextProvider } from "./Context/store";
 
 const montserrat = Montserrat({
 	subsets: ["latin"],
@@ -37,17 +38,18 @@ export default function RootLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<html
-			lang="en"
-			className={clsx(
-				montserrat.variable,
-				"min-h-screen bg-white dark:bg-black"
-			)}
-		>
-			<body>
-				<Header />
-				{children}
-				<Footer />
+		<html lang="en" className="light" style={{ colorScheme: "light" }}>
+			<body
+				className={clsx(
+					montserrat.variable,
+					"min-h-screen bg-white dark:bg-black"
+				)}
+			>
+				<GlobalContextProvider>
+					<Header />
+					{children}
+					<Footer />
+				</GlobalContextProvider>
 			</body>
 		</html>
 	);
