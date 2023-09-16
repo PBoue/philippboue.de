@@ -9,4 +9,5 @@ export const components = {
   map: dynamic(() => import("./Map")),
   references: dynamic(() => import("./References")),
   services: dynamic(() => import("./Services")),
+  tables: dynamic(() => import("./Tables")),
 };

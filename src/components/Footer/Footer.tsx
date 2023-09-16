@@ -7,7 +7,7 @@ export const Footer = async () => {
 	const social = await client.getSingle("social");
 
 	return (
-		<footer className="bg-black border-t border-cyan">
+		<footer className="bg-black border-t border-cyan relative z-40">
 			<div className="container max-w-7xl mx-auto py-10">
 				<div className=" sm:flex sm:items-center sm:justify-between">
 					<ul className="flex flex-wrap justify-center gap-4 text-xs lg:justify-end">

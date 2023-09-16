@@ -1,9 +1,11 @@
+export * from './BackgroundAnimation/RippleBackground'
 export * from './Container/Container'
 export * from './Heading/Heading'
 export * from './Paragraph/Paragraph'
 export * from './Link/Link'
 export * from './Button/Button'
 export * from './Icons/Icons'
+export * from './Table/Table'
 
 export * from './ProgressBar/ProgressBar'
 export * from './Logo/Logo'

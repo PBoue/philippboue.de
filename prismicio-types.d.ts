@@ -256,6 +256,7 @@ export type DegreeDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<DegreeDocumentData>, "degree", Lang>;
 
 type HomeDocumentDataSlicesSlice =
+  | TablesSlice
   | ServicesSlice
   | ReferencesSlice
   | CallToActionSlice
@@ -335,6 +336,7 @@ export type HomeDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<HomeDocumentData>, "home", Lang>;
 
 type PageDocumentDataSlicesSlice =
+  | TablesSlice
   | ServicesSlice
   | ReferencesSlice
   | CallToActionSlice
@@ -1498,6 +1500,243 @@ export type ServicesSlice = prismic.SharedSlice<
   ServicesSliceVariation
 >;
 
+/**
+ * Primary content in *Tables → Primary*
+ */
+export interface TablesSliceDefaultPrimary {
+  /**
+   * Section Headline field in *Tables → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: tables.primary.headline
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  headline: prismic.TitleField;
+
+  /**
+   * Section Subline field in *Tables → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: tables.primary.subline
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  subline: prismic.RichTextField;
+
+  /**
+   * Column Header 1 field in *Tables → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: tables.primary.column_header_1
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  column_header_1: prismic.RichTextField;
+
+  /**
+   * Column Header 2 field in *Tables → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: tables.primary.column_header_2
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  column_header_2: prismic.RichTextField;
+
+  /**
+   * Column Header 3 field in *Tables → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: tables.primary.column_header_3
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  column_header_3: prismic.RichTextField;
+
+  /**
+   * Column Header 4 field in *Tables → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: tables.primary.column_header_4
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  column_header_4: prismic.RichTextField;
+
+  /**
+   * Column Header 5 field in *Tables → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: tables.primary.column_header_5
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  column_header_5: prismic.RichTextField;
+
+  /**
+   * Column Header 6 field in *Tables → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: tables.primary.column_header_6
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  column_header_6: prismic.RichTextField;
+
+  /**
+   * Column Header 7 field in *Tables → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: tables.primary.column_header_7
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  column_header_7: prismic.RichTextField;
+
+  /**
+   * Column Header 8 field in *Tables → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: tables.primary.column_header_8
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  column_header_8: prismic.RichTextField;
+
+  /**
+   * Column Header 9 field in *Tables → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: tables.primary.column_header_9
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  column_header_9: prismic.RichTextField;
+}
+
+/**
+ * Primary content in *Tables → Items*
+ */
+export interface TablesSliceDefaultItem {
+  /**
+   * Column 1 field in *Tables → Items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: tables.items[].column_1
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  column_1: prismic.RichTextField;
+
+  /**
+   * Column 2 field in *Tables → Items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: tables.items[].column_2
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  column_2: prismic.RichTextField;
+
+  /**
+   * Column 3 field in *Tables → Items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: tables.items[].column_3
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  column_3: prismic.RichTextField;
+
+  /**
+   * Column 4 field in *Tables → Items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: tables.items[].column_4
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  column_4: prismic.RichTextField;
+
+  /**
+   * Column 5 field in *Tables → Items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: tables.items[].column_5
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  column_5: prismic.RichTextField;
+
+  /**
+   * Column 6 field in *Tables → Items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: tables.items[].column_6
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  column_6: prismic.RichTextField;
+
+  /**
+   * Column 7 field in *Tables → Items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: tables.items[].column_7
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  column_7: prismic.RichTextField;
+
+  /**
+   * Column 8 field in *Tables → Items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: tables.items[].column_8
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  column_8: prismic.RichTextField;
+
+  /**
+   * Column 9 field in *Tables → Items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: tables.items[].column_9
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  column_9: prismic.RichTextField;
+}
+
+/**
+ * Default variation for Tables Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TablesSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<TablesSliceDefaultPrimary>,
+  Simplify<TablesSliceDefaultItem>
+>;
+
+/**
+ * Slice variation for *Tables*
+ */
+type TablesSliceVariation = TablesSliceDefault;
+
+/**
+ * Tables Shared Slice
+ *
+ * - **API ID**: `tables`
+ * - **Description**: Tables
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TablesSlice = prismic.SharedSlice<"tables", TablesSliceVariation>;
+
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -1561,6 +1800,11 @@ declare module "@prismicio/client" {
       ServicesSliceDefaultItem,
       ServicesSliceVariation,
       ServicesSliceDefault,
+      TablesSlice,
+      TablesSliceDefaultPrimary,
+      TablesSliceDefaultItem,
+      TablesSliceVariation,
+      TablesSliceDefault,
     };
   }
 }
