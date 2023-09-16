@@ -7,6 +7,7 @@ export const components = {
   key_value_table: dynamic(() => import("./KeyValueTable")),
   main_stage: dynamic(() => import("./MainStage")),
   map: dynamic(() => import("./Map")),
+  projects_table: dynamic(() => import("./ProjectsTable")),
   references: dynamic(() => import("./References")),
   services: dynamic(() => import("./Services")),
   tables: dynamic(() => import("./Tables")),

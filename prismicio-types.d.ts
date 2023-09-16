@@ -336,6 +336,7 @@ export type HomeDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<HomeDocumentData>, "home", Lang>;
 
 type PageDocumentDataSlicesSlice =
+  | ProjectsTableSlice
   | TablesSlice
   | ServicesSlice
   | ReferencesSlice
@@ -420,7 +421,7 @@ export type PageDocument<Lang extends string = string> =
  */
 interface ProjectDocumentData {
   /**
-   * Name field in *Project*
+   * Project Name field in *Project*
    *
    * - **Field Type**: Text
    * - **Placeholder**: Project Name
@@ -429,6 +430,41 @@ interface ProjectDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   name: prismic.KeyTextField;
+
+  /**
+   * Company Name field in *Project*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.company_name
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  company_name: prismic.KeyTextField;
+
+  /**
+   * Logo field in *Project*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.logo
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  logo: prismic.SelectField<
+    | "actimonda"
+    | "adidas"
+    | "alphaneun"
+    | "antena3"
+    | "axa"
+    | "bmg"
+    | "congstar"
+    | "coremedia"
+    | "deutschebahn"
+    | "deutschepost"
+    | "deutschetelekom"
+    | "dailytelegraph"
+  >;
 
   /**
    * Excerpt field in *Project*
@@ -519,50 +555,57 @@ interface ProjectDocumentData {
   code: prismic.NumberField;
 
   /**
-   * Logo field in *Project*
+   * Client field in *Project*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.client
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  client: prismic.RichTextField;
+
+  /**
+   * Country field in *Project*
    *
    * - **Field Type**: Select
    * - **Placeholder**: *None*
-   * - **API ID Path**: project.logo
+   * - **Default Value**: Germany
+   * - **API ID Path**: project.country
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#select
    */
-  logo: prismic.SelectField<
-    | "actimonda"
-    | "adidas"
-    | "alphaneun"
-    | "antena3"
-    | "axa"
-    | "bmg"
-    | "congstar"
-    | "coremedia"
-    | "deutschebahn"
-    | "deutschepost"
-    | "deutschetelekom"
-    | "dailytelegraph"
+  country: prismic.SelectField<
+    | "Germany"
+    | "England"
+    | "Spain"
+    | "United States"
+    | "Netherlands"
+    | "Belgium"
+    | "France"
+    | "Luxemburg",
+    "filled"
   >;
 
   /**
-   * Company field in *Project*
+   * Industry field in *Project*
    *
-   * - **Field Type**: Content Relationship
+   * - **Field Type**: Select
    * - **Placeholder**: *None*
-   * - **API ID Path**: project.company
+   * - **API ID Path**: project.industry
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   * - **Documentation**: https://prismic.io/docs/field#select
    */
-  company: prismic.ContentRelationshipField<"company">;
-
-  /**
-   * Employer field in *Project*
-   *
-   * - **Field Type**: Content Relationship
-   * - **Placeholder**: *None*
-   * - **API ID Path**: project.employer
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  employer: prismic.ContentRelationshipField<"company">;
+  industry: prismic.SelectField<
+    | "Agency"
+    | "Media & Publishers"
+    | "Retail & Consumer Goods"
+    | "Finance & Insurance"
+    | "Mobility"
+    | "Travel"
+    | "Telco"
+    | "Software"
+  >;
 }
 
 /**
@@ -1320,6 +1363,76 @@ type MapSliceVariation = MapSliceDefault;
 export type MapSlice = prismic.SharedSlice<"map", MapSliceVariation>;
 
 /**
+ * Primary content in *ProjectsTable → Primary*
+ */
+export interface ProjectsTableSliceDefaultPrimary {
+  /**
+   * Headline field in *ProjectsTable → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: projects_table.primary.headline
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  headline: prismic.TitleField;
+
+  /**
+   * Subline field in *ProjectsTable → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: projects_table.primary.subline
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  subline: prismic.RichTextField;
+}
+
+/**
+ * Primary content in *ProjectsTable → Items*
+ */
+export interface ProjectsTableSliceDefaultItem {
+  /**
+   * Project field in *ProjectsTable → Items*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: projects_table.items[].project
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  project: prismic.ContentRelationshipField<"project">;
+}
+
+/**
+ * Default variation for ProjectsTable Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ProjectsTableSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ProjectsTableSliceDefaultPrimary>,
+  Simplify<ProjectsTableSliceDefaultItem>
+>;
+
+/**
+ * Slice variation for *ProjectsTable*
+ */
+type ProjectsTableSliceVariation = ProjectsTableSliceDefault;
+
+/**
+ * ProjectsTable Shared Slice
+ *
+ * - **API ID**: `projects_table`
+ * - **Description**: ProjectsTable
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ProjectsTableSlice = prismic.SharedSlice<
+  "projects_table",
+  ProjectsTableSliceVariation
+>;
+
+/**
  * Primary content in *References → Primary*
  */
 export interface ReferencesSliceDefaultPrimary {
@@ -1790,6 +1903,11 @@ declare module "@prismicio/client" {
       MapSliceDefaultPrimary,
       MapSliceVariation,
       MapSliceDefault,
+      ProjectsTableSlice,
+      ProjectsTableSliceDefaultPrimary,
+      ProjectsTableSliceDefaultItem,
+      ProjectsTableSliceVariation,
+      ProjectsTableSliceDefault,
       ReferencesSlice,
       ReferencesSliceDefaultPrimary,
       ReferencesSliceDefaultItem,

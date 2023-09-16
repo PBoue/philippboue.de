@@ -6,18 +6,46 @@
   "status": true,
   "json": {
     "Main": {
-      "name": {
-        "type": "Text",
-        "config": {
-          "label": "Name",
-          "placeholder": "Project Name"
-        }
-      },
       "uid": {
         "config": {
           "label": "UID"
         },
         "type": "UID"
+      },
+      "name": {
+        "type": "Text",
+        "config": {
+          "label": "Project Name",
+          "placeholder": "Project Name"
+        }
+      },
+      "company_name": {
+        "type": "Text",
+        "config": {
+          "label": "Company Name",
+          "placeholder": ""
+        }
+      },
+      "logo": {
+        "type": "Select",
+        "config": {
+          "label": "Logo",
+          "placeholder": "",
+          "options": [
+            "actimonda",
+            "adidas",
+            "alphaneun",
+            "antena3",
+            "axa",
+            "bmg",
+            "congstar",
+            "coremedia",
+            "deutschebahn",
+            "deutschepost",
+            "deutschetelekom",
+            "dailytelegraph"
+          ]
+        }
       },
       "excerpt": {
         "type": "StructuredText",
@@ -80,41 +108,48 @@
           "placeholder": ""
         }
       },
-      "logo": {
+      "client": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Client",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "single": "paragraph,strong,em,hyperlink"
+        }
+      },
+      "country": {
         "type": "Select",
         "config": {
-          "label": "Logo",
+          "label": "Country",
           "placeholder": "",
           "options": [
-            "actimonda",
-            "adidas",
-            "alphaneun",
-            "antena3",
-            "axa",
-            "bmg",
-            "congstar",
-            "coremedia",
-            "deutschebahn",
-            "deutschepost",
-            "deutschetelekom",
-            "dailytelegraph"
+            "Germany",
+            "England",
+            "Spain",
+            "United States",
+            "Netherlands",
+            "Belgium",
+            "France",
+            "Luxemburg"
+          ],
+          "default_value": "Germany"
+        }
+      },
+      "industry": {
+        "type": "Select",
+        "config": {
+          "label": "Industry",
+          "placeholder": "",
+          "options": [
+            "Agency",
+            "Media & Publishers",
+            "Retail & Consumer Goods",
+            "Finance & Insurance",
+            "Mobility",
+            "Travel",
+            "Telco",
+            "Software"
           ]
-        }
-      },
-      "company": {
-        "type": "Link",
-        "config": {
-          "label": "Company",
-          "select": "document",
-          "customtypes": ["company"]
-        }
-      },
-      "employer": {
-        "type": "Link",
-        "config": {
-          "label": "Employer",
-          "select": "document",
-          "customtypes": ["company"]
         }
       }
     }
