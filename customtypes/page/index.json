@@ -6,12 +6,6 @@
   "status": true,
   "json": {
     "Main": {
-      "uid": {
-        "config": {
-          "label": "UID"
-        },
-        "type": "UID"
-      },
       "title": {
         "type": "StructuredText",
         "config": {
@@ -21,11 +15,20 @@
           "single": "heading1,strong,em"
         }
       },
+      "uid": {
+        "config": {
+          "label": "UID"
+        },
+        "type": "UID"
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "skills_table": {
+              "type": "SharedSlice"
+            },
             "projects_table": {
               "type": "SharedSlice"
             },

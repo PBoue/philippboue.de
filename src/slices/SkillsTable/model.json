@@ -1,0 +1,48 @@
+{
+  "id": "skills_table",
+  "type": "SharedSlice",
+  "name": "SkillsTable",
+  "description": "SkillsTable",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "headline": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Headline",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "heading2,strong,em,hyperlink"
+          }
+        },
+        "subline": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Subline",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,strong,em,hyperlink"
+          }
+        }
+      },
+      "items": {
+        "skill_group": {
+          "type": "Link",
+          "config": {
+            "label": "Skill Group",
+            "select": "document",
+            "customtypes": [
+              "skill_group"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

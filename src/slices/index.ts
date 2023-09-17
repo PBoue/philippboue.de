@@ -10,5 +10,6 @@ export const components = {
   projects_table: dynamic(() => import("./ProjectsTable")),
   references: dynamic(() => import("./References")),
   services: dynamic(() => import("./Services")),
+  skills_table: dynamic(() => import("./SkillsTable")),
   tables: dynamic(() => import("./Tables")),
 };

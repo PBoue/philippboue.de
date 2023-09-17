@@ -256,6 +256,8 @@ export type DegreeDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<DegreeDocumentData>, "degree", Lang>;
 
 type HomeDocumentDataSlicesSlice =
+  | SkillsTableSlice
+  | ProjectsTableSlice
   | TablesSlice
   | ServicesSlice
   | ReferencesSlice
@@ -336,6 +338,7 @@ export type HomeDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<HomeDocumentData>, "home", Lang>;
 
 type PageDocumentDataSlicesSlice =
+  | SkillsTableSlice
   | ProjectsTableSlice
   | TablesSlice
   | ServicesSlice
@@ -954,6 +957,96 @@ export type SkillDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<SkillDocumentData>, "skill", Lang>;
 
 /**
+ * Item in *Skill Group → Skills*
+ */
+export interface SkillGroupDocumentDataSkillsItem {
+  /**
+   * Name field in *Skill Group → Skills*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: skill_group.skills[].name
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  name: prismic.KeyTextField;
+
+  /**
+   * Type field in *Skill Group → Skills*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: skill_group.skills[].type
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  type: prismic.SelectField<
+    "Methodology" | "Language" | "Product" | "Framework"
+  >;
+
+  /**
+   * Start field in *Skill Group → Skills*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: skill_group.skills[].start
+   * - **Documentation**: https://prismic.io/docs/field#number
+   */
+  start: prismic.NumberField;
+
+  /**
+   * Level field in *Skill Group → Skills*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: skill_group.skills[].level
+   * - **Documentation**: https://prismic.io/docs/field#number
+   */
+  level: prismic.NumberField;
+}
+
+/**
+ * Content for Skill Group documents
+ */
+interface SkillGroupDocumentData {
+  /**
+   * Title field in *Skill Group*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: Skillset
+   * - **API ID Path**: skill_group.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.TitleField;
+
+  /**
+   * Skills field in *Skill Group*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: skill_group.skills[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  skills: prismic.GroupField<Simplify<SkillGroupDocumentDataSkillsItem>>;
+}
+
+/**
+ * Skill Group document from Prismic
+ *
+ * - **API ID**: `skill_group`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type SkillGroupDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<SkillGroupDocumentData>,
+    "skill_group",
+    Lang
+  >;
+
+/**
  * Item in *Social → Social Plattforms*
  */
 export interface SocialDocumentDataSocialPlattformsItem {
@@ -1107,6 +1200,7 @@ export type AllDocumentTypes =
   | SchoolDocument
   | SettingsDocument
   | SkillDocument
+  | SkillGroupDocument
   | SocialDocument
   | TestimonialDocument;
 
@@ -1614,6 +1708,76 @@ export type ServicesSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Primary content in *SkillsTable → Primary*
+ */
+export interface SkillsTableSliceDefaultPrimary {
+  /**
+   * Headline field in *SkillsTable → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: skills_table.primary.headline
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  headline: prismic.RichTextField;
+
+  /**
+   * Subline field in *SkillsTable → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: skills_table.primary.subline
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  subline: prismic.RichTextField;
+}
+
+/**
+ * Primary content in *SkillsTable → Items*
+ */
+export interface SkillsTableSliceDefaultItem {
+  /**
+   * Skill Group field in *SkillsTable → Items*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: skills_table.items[].skill_group
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  skill_group: prismic.ContentRelationshipField<"skill_group">;
+}
+
+/**
+ * Default variation for SkillsTable Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type SkillsTableSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<SkillsTableSliceDefaultPrimary>,
+  Simplify<SkillsTableSliceDefaultItem>
+>;
+
+/**
+ * Slice variation for *SkillsTable*
+ */
+type SkillsTableSliceVariation = SkillsTableSliceDefault;
+
+/**
+ * SkillsTable Shared Slice
+ *
+ * - **API ID**: `skills_table`
+ * - **Description**: SkillsTable
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type SkillsTableSlice = prismic.SharedSlice<
+  "skills_table",
+  SkillsTableSliceVariation
+>;
+
+/**
  * Primary content in *Tables → Primary*
  */
 export interface TablesSliceDefaultPrimary {
@@ -1880,6 +2044,9 @@ declare module "@prismicio/client" {
       SettingsDocumentDataFooterLinksItem,
       SkillDocument,
       SkillDocumentData,
+      SkillGroupDocument,
+      SkillGroupDocumentData,
+      SkillGroupDocumentDataSkillsItem,
       SocialDocument,
       SocialDocumentData,
       SocialDocumentDataSocialPlattformsItem,
@@ -1918,6 +2085,11 @@ declare module "@prismicio/client" {
       ServicesSliceDefaultItem,
       ServicesSliceVariation,
       ServicesSliceDefault,
+      SkillsTableSlice,
+      SkillsTableSliceDefaultPrimary,
+      SkillsTableSliceDefaultItem,
+      SkillsTableSliceVariation,
+      SkillsTableSliceDefault,
       TablesSlice,
       TablesSliceDefaultPrimary,
       TablesSliceDefaultItem,

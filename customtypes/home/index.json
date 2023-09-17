@@ -18,6 +18,12 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "skills_table": {
+              "type": "SharedSlice"
+            },
+            "projects_table": {
+              "type": "SharedSlice"
+            },
             "tables": {
               "type": "SharedSlice"
             },
