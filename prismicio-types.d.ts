@@ -338,6 +338,7 @@ export type HomeDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<HomeDocumentData>, "home", Lang>;
 
 type PageDocumentDataSlicesSlice =
+  | ContactFormSlice
   | SkillsTableSlice
   | ProjectsTableSlice
   | TablesSlice
@@ -885,78 +886,6 @@ export type SettingsDocument<Lang extends string = string> =
   >;
 
 /**
- * Content for Skill documents
- */
-interface SkillDocumentData {
-  /**
-   * Name field in *Skill*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: skill.name
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  name: prismic.KeyTextField;
-
-  /**
-   * Category field in *Skill*
-   *
-   * - **Field Type**: Select
-   * - **Placeholder**: *None*
-   * - **API ID Path**: skill.category
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#select
-   */
-  category: prismic.SelectField<
-    | "Methodology"
-    | "Business"
-    | "Consulting"
-    | "Marketing"
-    | "Creative"
-    | "Code"
-    | "Office"
-    | "CRM, CMS & Co."
-    | "Language"
-    | "Project Management"
-  >;
-
-  /**
-   * Experience field in *Skill*
-   *
-   * - **Field Type**: Number
-   * - **Placeholder**: *None*
-   * - **API ID Path**: skill.experience
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#number
-   */
-  experience: prismic.NumberField;
-
-  /**
-   * Level field in *Skill*
-   *
-   * - **Field Type**: Number
-   * - **Placeholder**: *None*
-   * - **API ID Path**: skill.level
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#number
-   */
-  level: prismic.NumberField;
-}
-
-/**
- * Skill document from Prismic
- *
- * - **API ID**: `skill`
- * - **Repeatable**: `true`
- * - **Documentation**: https://prismic.io/docs/custom-types
- *
- * @typeParam Lang - Language API ID of the document.
- */
-export type SkillDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithUID<Simplify<SkillDocumentData>, "skill", Lang>;
-
-/**
  * Item in *Skill Group → Skills*
  */
 export interface SkillGroupDocumentDataSkillsItem {
@@ -1199,7 +1128,6 @@ export type AllDocumentTypes =
   | ProjectDocument
   | SchoolDocument
   | SettingsDocument
-  | SkillDocument
   | SkillGroupDocument
   | SocialDocument
   | TestimonialDocument;
@@ -1277,6 +1205,61 @@ type CallToActionSliceVariation = CallToActionSliceDefault;
 export type CallToActionSlice = prismic.SharedSlice<
   "call_to_action",
   CallToActionSliceVariation
+>;
+
+/**
+ * Primary content in *ContactForm → Primary*
+ */
+export interface ContactFormSliceDefaultPrimary {
+  /**
+   * Headline field in *ContactForm → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contact_form.primary.headline
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  headline: prismic.TitleField;
+
+  /**
+   * Subline field in *ContactForm → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contact_form.primary.subline
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  subline: prismic.RichTextField;
+}
+
+/**
+ * Default variation for ContactForm Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ContactFormSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ContactFormSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *ContactForm*
+ */
+type ContactFormSliceVariation = ContactFormSliceDefault;
+
+/**
+ * ContactForm Shared Slice
+ *
+ * - **API ID**: `contact_form`
+ * - **Description**: ContactForm
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ContactFormSlice = prismic.SharedSlice<
+  "contact_form",
+  ContactFormSliceVariation
 >;
 
 /**
@@ -2042,8 +2025,6 @@ declare module "@prismicio/client" {
       SettingsDocumentData,
       SettingsDocumentDataNavigationItem,
       SettingsDocumentDataFooterLinksItem,
-      SkillDocument,
-      SkillDocumentData,
       SkillGroupDocument,
       SkillGroupDocumentData,
       SkillGroupDocumentDataSkillsItem,
@@ -2057,6 +2038,10 @@ declare module "@prismicio/client" {
       CallToActionSliceDefaultPrimary,
       CallToActionSliceVariation,
       CallToActionSliceDefault,
+      ContactFormSlice,
+      ContactFormSliceDefaultPrimary,
+      ContactFormSliceVariation,
+      ContactFormSliceDefault,
       KeyValueTableSlice,
       KeyValueTableSliceDefaultPrimary,
       KeyValueTableSliceDefaultItem,

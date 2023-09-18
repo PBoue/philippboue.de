@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 
 export const components = {
   call_to_action: dynamic(() => import("./CallToAction")),
+  contact_form: dynamic(() => import("./ContactForm")),
   key_value_table: dynamic(() => import("./KeyValueTable")),
   main_stage: dynamic(() => import("./MainStage")),
   map: dynamic(() => import("./Map")),

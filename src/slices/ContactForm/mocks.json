@@ -1,0 +1,31 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"headline": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading1",
+						"content": {
+							"text": "Combine"
+						}
+					}
+				]
+			},
+			"subline": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Pariatur sit eu cupidatat pariatur in officia. Ipsum aliquip ut duis tempor quis minim esse."
+						}
+					}
+				]
+			}
+		},
+		"items": []
+	}
+]
