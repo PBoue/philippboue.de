@@ -133,9 +133,7 @@ export default function Contact() {
 					</div>
 				</div>
 				<div className="mt-10">
-					<Button type="submit" href="/">
-						Let us talk
-					</Button>
+					<Button type="submit">Let us talk</Button>
 				</div>
 			</form>
 		</>

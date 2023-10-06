@@ -9,7 +9,7 @@ export function Link({
 	return (
 		<PrismicNextLink
 			className={clsx(
-				"group inline-flex items-center gap-2 text-base sm:text-lg font-bold text-cyan",
+				"group inline-flex items-center gap-2 text-base sm:text-lg font-bold text-cyan hover:cursor-pointer",
 				className
 			)}
 			{...restProps}

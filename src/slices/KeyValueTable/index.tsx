@@ -8,7 +8,7 @@ import { Container, Heading, Paragraph } from "@/components";
 
 const components: JSXMapSerializer = {
 	heading2: ({ children }) => (
-		<Heading as="h2" size="lg" color="default">
+		<Heading as="h2" variant="lg">
 			{children}
 		</Heading>
 	),
@@ -39,11 +39,11 @@ const KeyValueTable = ({ slice }: KeyValueTableProps): JSX.Element => {
 				</div>
 			)}
 			{slice.items.map((item, i) => (
-				<div key={i} className="grid grid-cols-2 gap-10 w-full">
-					<dt className="text-black dark:text-white text-base font-extrabold capitalize md:text-right pb-5 md:pb-14">
+				<div key={i} className="grid grid-cols-[30%_70%] gap-10 w-full">
+					<dt className="text-black dark:text-white font-extrabold capitalize flex justify-end">
 						<PrismicRichText field={item.label} components={components} />
 					</dt>
-					<dd className="text-black dark:text-white text-base">
+					<dd className="text-black dark:text-white flex justify-start flex-wrap text-left">
 						<PrismicRichText field={item.value} components={components} />
 					</dd>
 				</div>

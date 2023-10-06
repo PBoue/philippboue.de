@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { createClient } from "@/prismicio";
 import { Logo, ProgressBar } from "@/components";
-import { MainMenu } from "@/components/MainMenu/MainMenu";
+import { MainMenu } from "@/components/MainMenu";
 
 export interface HeaderProps {}
 

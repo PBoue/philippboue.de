@@ -2,6 +2,7 @@
 
 import { Content } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
+import { PrismicNextImage } from "@prismicio/next";
 
 import { Container } from "@/components";
 
@@ -192,9 +193,9 @@ const MainStage = ({ slice }: MainStageProps): JSX.Element => {
 					</g>
 				</motion.svg>
 				<motion.div
-					className="absolute md:relative right-0 z-0 max-w-xs md:max-w-xl pt-32 min-h-screen md:min-h-0"
+					className="absolute right-0 top-1/3"
 					variants={{
-						hidden: { x: 500 },
+						hidden: { x: 2000 },
 						visible: { x: 0 },
 					}}
 					initial="hidden"
@@ -206,7 +207,9 @@ const MainStage = ({ slice }: MainStageProps): JSX.Element => {
 						type: "spring",
 						stiffness: 100,
 					}}
-				></motion.div>
+				>
+					<PrismicNextImage field={slice.primary.image} />
+				</motion.div>
 			</div>
 		</Container>
 	);

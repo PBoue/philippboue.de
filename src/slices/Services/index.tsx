@@ -16,12 +16,12 @@ import {
 
 const components: JSXMapSerializer = {
 	heading2: ({ children }) => (
-		<Heading as="h2" size="lg">
+		<Heading as="h2" variant="md">
 			{children}
 		</Heading>
 	),
 	heading3: ({ children }) => (
-		<Heading as="h3" size="md" color="black">
+		<Heading as="h3" variant="md" color="black">
 			{children}
 		</Heading>
 	),

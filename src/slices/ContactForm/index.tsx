@@ -5,7 +5,7 @@ import {
 	SliceComponentProps,
 } from "@prismicio/react";
 import { Container, Heading, Paragraph } from "@/components";
-import Contact from "@/components/ContactForm/ContactForm";
+import Contact from "@/components/ContactForm";
 
 const components: JSXMapSerializer = {
 	heading1: ({ children }) => (

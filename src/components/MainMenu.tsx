@@ -5,7 +5,7 @@ import { useAnimate, stagger } from "framer-motion";
 import { UrlObject } from "url";
 import { PrismicNextLink } from "@prismicio/next";
 import { useGlobalContext } from "@/app/Context/store";
-import { ThemeToggle } from "../ThemeToggle/ThemeToggle";
+import { ThemeToggle } from "./ThemeToggle";
 
 const Path = (props: any) => (
 	<path fill="transparent" strokeWidth="3" strokeLinecap="round" {...props} />
@@ -82,8 +82,12 @@ export const MainMenu: FC<MainMenuProps> = ({ items }) => {
 						d="M 2 2.5 L 20 2.5"
 						className="top stroke-black dark:stroke-white"
 						variants={{
-							closed: { d: "M 2 2.5 L 20 2.5" },
-							open: { d: "M 3 16.5 L 17 2.5" },
+							closed: {
+								d: "M 2 2.5 L 20 2.5",
+							},
+							open: {
+								d: "M 3 16.5 L 17 2.5",
+							},
 						}}
 					/>
 					<Path
@@ -101,7 +105,7 @@ export const MainMenu: FC<MainMenuProps> = ({ items }) => {
 					/>
 				</svg>
 			</button>
-			<nav className="fixed top-0 right-0 bottom-0 w-2/4 h-screen z-40 bg-cyan pt-10 will-change-transform -translate-x-full opacity-0">
+			<nav className="grid grid-flow-row content-between fixed top-0 right-0 bottom-0 w-3/4 md:w-2/4 h-screen z-40 bg-cyan/90 pt-10 will-change-transform -translate-x-full opacity-0">
 				<ul className="flex flex-col gap-5 p-5 list-none m-0">
 					{items.map((item, i) => (
 						<li
@@ -116,8 +120,10 @@ export const MainMenu: FC<MainMenuProps> = ({ items }) => {
 							</PrismicNextLink>
 						</li>
 					))}
-					<ThemeToggle />
 				</ul>
+				<div className="ml-10 mb-10">
+					<ThemeToggle />
+				</div>
 			</nav>
 		</div>
 	);
