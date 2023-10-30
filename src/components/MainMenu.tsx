@@ -15,7 +15,7 @@ function useMenuAnimation(mainMenu: boolean) {
 	const [scope, animate] = useAnimate();
 
 	useEffect(() => {
-		const menuAnimations = mainMenu
+		const menuAnimations: any = mainMenu
 			? [
 					[
 						"nav",
@@ -60,7 +60,7 @@ function useMenuAnimation(mainMenu: boolean) {
 	return scope;
 }
 
-interface MainMenuProps {
+export interface MainMenuProps {
 	items: {
 		label: String;
 		link: {

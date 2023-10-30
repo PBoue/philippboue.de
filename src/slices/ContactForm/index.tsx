@@ -9,7 +9,11 @@ import Contact from "@/components/ContactForm";
 
 const components: JSXMapSerializer = {
 	heading1: ({ children }) => (
-		<Heading as="h1" size="lg" className="mt-2 text-lg leading-8 text-gray-600">
+		<Heading
+			as="h1"
+			variant="lg"
+			className="mt-2 text-lg leading-8 text-gray-600"
+		>
 			{children}
 		</Heading>
 	),

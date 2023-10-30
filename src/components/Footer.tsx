@@ -42,7 +42,7 @@ export const Footer = async () => {
 											fill="currentColor"
 											xmlns="http://www.w3.org/2000/svg"
 										>
-											<path className="fill-white" d={svg_icon_path} />
+											<path className="fill-white" d={svg_icon_path ?? ""} />
 										</svg>
 									</PrismicNextLink>
 								</li>

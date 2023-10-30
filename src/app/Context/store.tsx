@@ -20,7 +20,13 @@ const GlobalContext = createContext<ContextProps>({
 	setMainMenu: (): boolean => false,
 });
 
-export const GlobalContextProvider = ({ children }) => {
+import { ReactNode } from "react";
+
+export const GlobalContextProvider = ({
+	children,
+}: {
+	children: ReactNode;
+}) => {
 	const [mainMenu, setMainMenu] = useState(false);
 
 	return (

@@ -10,12 +10,12 @@ import { Container, Heading, Paragraph } from "@/components";
 
 const components: JSXMapSerializer = {
 	heading2: ({ children }) => (
-		<Heading as="h2" size="lg">
+		<Heading as="h2" variant="lg">
 			{children}
 		</Heading>
 	),
 	heading3: ({ children }) => (
-		<Heading as="h3" size="md">
+		<Heading as="h3" variant="md">
 			{children}
 		</Heading>
 	),

@@ -31,7 +31,7 @@ const components: JSXMapSerializer = {
 	),
 };
 
-const logos = {
+const logos: any = {
 	actimonda: <Actimonda />,
 	adidas: <Adidas />,
 	alphaneun: <Alphaneun />,
@@ -59,7 +59,7 @@ const References = async ({ slice }: ReferencesProps): Promise<JSX.Element> => {
 			data-slice-type={slice.slice_type}
 			data-slice-variation={slice.variation}
 		>
-			<Heading as="h2" size="lg">
+			<Heading as="h2" variant="lg">
 				{slice.primary.headline}
 			</Heading>
 			<PrismicRichText field={slice.primary.excerpt} components={components} />

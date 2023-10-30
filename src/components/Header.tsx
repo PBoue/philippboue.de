@@ -1,13 +1,11 @@
 import Link from "next/link";
 import { createClient } from "@/prismicio";
 import { Logo, ProgressBar } from "@/components";
-import { MainMenu } from "@/components/MainMenu";
-
-export interface HeaderProps {}
+import { MainMenu, MainMenuProps } from "@/components/MainMenu";
 
 export const Header = async () => {
 	const client = createClient();
-	const settings = await client.getSingle("settings");
+	const settings: any = await client.getSingle("settings");
 
 	return (
 		<>

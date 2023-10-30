@@ -1,4 +1,5 @@
 import { Content } from "@prismicio/client";
+import { PrismicNextLink } from "@prismicio/next";
 import {
 	PrismicRichText,
 	JSXMapSerializer,
@@ -8,7 +9,11 @@ import { Container, Heading, Paragraph, Button } from "@/components";
 
 const components: JSXMapSerializer = {
 	heading2: ({ children }) => (
-		<Heading as="h2" size="lg" className="mt-2 text-lg leading-8 text-gray-600">
+		<Heading
+			as="h2"
+			variant="lg"
+			className="mt-2 text-lg leading-8 text-gray-600"
+		>
 			{children}
 		</Heading>
 	),
@@ -37,9 +42,9 @@ const CallToAction = ({ slice }: CallToActionProps): JSX.Element => {
 					field={slice.primary.subline}
 					components={components}
 				/>
-				<Button field={slice.primary.link} className="mt-5">
+				<PrismicNextLink field={slice.primary.link}>
 					{slice.primary.link_text}
-				</Button>
+				</PrismicNextLink>
 			</div>
 		</Container>
 	);

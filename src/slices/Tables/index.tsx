@@ -19,7 +19,7 @@ import {
 
 const components: JSXMapSerializer = {
 	heading2: ({ children }) => (
-		<Heading as="h2" size="lg">
+		<Heading as="h2" variant="lg">
 			{children}
 		</Heading>
 	),

@@ -14,7 +14,7 @@ import { Container, Heading, Paragraph } from "@/components";
 
 const components: JSXMapSerializer = {
 	heading2: ({ children }) => (
-		<Heading as="h2" size="lg" color="default">
+		<Heading as="h2" variant="lg" color="default">
 			{children}
 		</Heading>
 	),
