@@ -26,11 +26,13 @@ export default function Contact() {
 				</p>
 			</div>
 			<form
-				action="#"
+				action="/success"
 				method="POST"
+				name="contact"
 				className="mx-auto mt-16 max-w-xl sm:mt-20"
 				data-netlify="true"
 			>
+				<input type="hidden" name="form-name" value="contact" />
 				<div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
 					<div>
 						<label
@@ -134,7 +136,7 @@ export default function Contact() {
 					</div>
 				</div>
 				<div className="mt-10">
-					<Button type="submit">Let us talk</Button>
+					<button type="submit">Let us talk</button>
 				</div>
 			</form>
 		</>
