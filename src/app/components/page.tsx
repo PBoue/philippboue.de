@@ -24,7 +24,6 @@ import {
 } from "@/components/elements/Select";
 import { Slider } from "@/components/elements/Slider";
 import { Switch } from "@/components/elements/Switch";
-import { DatePicker } from "@/components/elements/Datepicker";
 import { Checkbox } from "@/components/elements/Checkbox";
 import {
 	Collapsible,
@@ -152,10 +151,6 @@ export default async function Page() {
 					<Switch />
 					<Label htmlFor="switch">Switch Label On</Label>
 				</div>
-
-				<div className="flex w-full h-[1px] bg-black dark:bg-white"></div>
-
-				<DatePicker />
 
 				<div className="flex w-full h-[1px] bg-black dark:bg-white"></div>
 
