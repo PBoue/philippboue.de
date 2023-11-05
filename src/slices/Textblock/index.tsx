@@ -32,10 +32,10 @@ const Textblock = ({ slice }: TextblockProps): JSX.Element => {
 			data-slice-type={slice.slice_type}
 			data-slice-variation={slice.variation}
 		>
-			<PrismicRichText field={slice.primary.title} components={components} />
-			<div className="mx-auto max-w-2xl text-center">
-				<PrismicRichText field={slice.primary.text} components={components} />
-			</div>
+			<PrismicRichText
+				field={slice.items[0].richtext}
+				components={components}
+			/>
 		</Container>
 	);
 };
