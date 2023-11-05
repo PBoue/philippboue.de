@@ -136,7 +136,7 @@ export default function Contact() {
 					</div>
 				</div>
 				<div className="mt-10">
-					<button type="submit">Let us talk</button>
+					<Button type="submit">Let us talk</Button>
 				</div>
 			</form>
 		</>

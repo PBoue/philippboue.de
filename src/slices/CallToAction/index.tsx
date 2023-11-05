@@ -5,7 +5,7 @@ import {
 	JSXMapSerializer,
 	SliceComponentProps,
 } from "@prismicio/react";
-import { Container, Heading, Paragraph, Button } from "@/components";
+import { Container, Heading, Paragraph, Link } from "@/components";
 
 const components: JSXMapSerializer = {
 	heading2: ({ children }) => (
@@ -42,9 +42,9 @@ const CallToAction = ({ slice }: CallToActionProps): JSX.Element => {
 					field={slice.primary.subline}
 					components={components}
 				/>
-				<PrismicNextLink field={slice.primary.link}>
+				<Link variant="button" field={slice.primary.link}>
 					{slice.primary.link_text}
-				</PrismicNextLink>
+				</Link>
 			</div>
 		</Container>
 	);
