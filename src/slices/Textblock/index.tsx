@@ -7,10 +7,19 @@ import {
 import { Container, Heading, Paragraph } from "@/components";
 
 const components: JSXMapSerializer = {
-	heading2: ({ children }) => (
+	heading1: ({ children }) => (
 		<Heading
 			as="h1"
 			variant="lg"
+			className="mt-2 text-lg leading-8 text-gray-600"
+		>
+			{children}
+		</Heading>
+	),
+	heading2: ({ children }) => (
+		<Heading
+			as="h2"
+			variant="md"
 			className="mt-2 text-lg leading-8 text-gray-600"
 		>
 			{children}
@@ -32,10 +41,12 @@ const Textblock = ({ slice }: TextblockProps): JSX.Element => {
 			data-slice-type={slice.slice_type}
 			data-slice-variation={slice.variation}
 		>
-			<PrismicRichText
-				field={slice.items[0].richtext}
-				components={components}
-			/>
+			<div className="mx-auto max-w-2xl text-left">
+				<PrismicRichText
+					field={slice.items[0].richtext}
+					components={components}
+				/>
+			</div>
 		</Container>
 	);
 };
