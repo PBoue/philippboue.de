@@ -1,0 +1,28 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": [
+					[
+						"richtext",
+						{
+							"__TYPE__": "StructuredTextContent",
+							"value": [
+								{
+									"type": "paragraph",
+									"content": {
+										"text": "Ad Lorem fugiat adipisicing velit in enim aliqua eiusmod Lorem sunt ut nisi enim nulla. Aliquip incididunt Lorem labore est in esse amet sit cillum commodo nisi tempor eiusmod. Qui irure labore officia exercitation ex aute."
+									}
+								}
+							]
+						}
+					]
+				]
+			}
+		]
+	}
+]
