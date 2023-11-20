@@ -58,8 +58,8 @@ export async function generateMetadata(): Promise<Metadata> {
 			shortcut: "/shortcut-icon.png",
 			apple: "/apple-icon.png",
 			other: {
-				rel: "apple-touch-icon-precomposed",
-				url: "/apple-touch-icon-precomposed.png",
+				rel: "apple-touch-icon",
+				url: "/apple-touch-icon.png",
 			},
 		},
 		themeColor: [
@@ -85,7 +85,7 @@ export default function RootLayout({
 			<body
 				className={clsx(
 					montserrat.variable,
-					"min-h-screen bg-white dark:bg-black"
+					"min-h-screen bg-white dark:bg-black",
 				)}
 			>
 				<GlobalContextProvider>
