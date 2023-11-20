@@ -551,6 +551,8 @@ interface ProjectDocumentData {
     | "welt"
     | "wien"
     | "wincor"
+    | "sbs"
+    | "zeit"
   >;
 
   /**

@@ -52,6 +52,7 @@ import {
 	RalphLauren,
 	Rwe,
 	Suez,
+	SBS,
 	TheDailyTelegraph,
 	TheIndependent,
 	TSystems,
@@ -64,6 +65,7 @@ import {
 	Welt,
 	Wien,
 	Wincor,
+	Zeit,
 } from "@/components";
 
 const components: JSXMapSerializer = {
@@ -119,6 +121,7 @@ const logos: any = {
 	netbank: <Netbank />,
 	ralphlauren: <RalphLauren />,
 	rwe: <Rwe />,
+	sbs: <SBS />,
 	suez: <Suez />,
 	thedailytelegraph: <TheDailyTelegraph />,
 	theindependent: <TheIndependent />,
@@ -132,6 +135,7 @@ const logos: any = {
 	welt: <Welt />,
 	wien: <Wien />,
 	wincor: <Wincor />,
+	zeit: <Zeit />,
 };
 
 export type ReferencesProps = SliceComponentProps<Content.ReferencesSlice>;
