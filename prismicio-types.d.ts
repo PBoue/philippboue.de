@@ -639,17 +639,6 @@ interface ProjectDocumentData {
     | "Telco"
     | "Software"
   >;
-
-  /**
-   * Skills field in *Project*
-   *
-   * - **Field Type**: Select
-   * - **Placeholder**: *None*
-   * - **API ID Path**: project.skills
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#select
-   */
-  skills: prismic.SelectField<"HR Management" | "Innovation Management">;
 }
 
 /**

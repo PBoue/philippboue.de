@@ -138,14 +138,6 @@
             "Software"
           ]
         }
-      },
-      "skills": {
-        "type": "Select",
-        "config": {
-          "label": "Skills",
-          "placeholder": "",
-          "options": ["HR Management", "Innovation Management"]
-        }
       }
     }
   }
