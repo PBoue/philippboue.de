@@ -43,16 +43,26 @@ const References = async ({ slice }: ReferencesProps): Promise<JSX.Element> => {
 				{slice.primary.headline}
 			</Heading>
 			<PrismicRichText field={slice.primary.excerpt} components={components} />
-			<div className="gap-6 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6">
-				{projects.map((project, i) => (
-					<ReferenceCard
-						key={i}
-						index={i}
-						companylogo={project?.data.companylogo}
-						company_name={project?.data.company_name as string}
-						industry={project?.data.industry as string}
-					/>
-				))}
+			<div className="gap-6 grid grid-cols-2 m:grid-cols-4 lg:grid-cols-6">
+				{projects.map((project, i) => {
+					let startdate = "unknown",
+						enddate = "unknown";
+					if (project?.data.startdate)
+						startdate = project.data.startdate.substring(0, 4);
+					if (project?.data.enddate)
+						enddate = project.data.enddate.substring(0, 4);
+					return (
+						<ReferenceCard
+							key={i}
+							index={i}
+							companylogo={project?.data.companylogo}
+							company_name={project?.data.company_name as string}
+							industry={project?.data.industry as string}
+							startdate={startdate as string}
+							enddate={enddate as string}
+						/>
+					);
+				})}
 			</div>
 		</Container>
 	);

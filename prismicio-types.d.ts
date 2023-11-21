@@ -489,73 +489,6 @@ interface ProjectDocumentData {
   company_name: prismic.KeyTextField;
 
   /**
-   * Logo field in *Project*
-   *
-   * - **Field Type**: Select
-   * - **Placeholder**: *None*
-   * - **API ID Path**: project.logo
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#select
-   */
-  logo: prismic.SelectField<
-    | "actimonda"
-    | "adidas"
-    | "alphaneun"
-    | "antena3"
-    | "axa"
-    | "bmg"
-    | "congstar"
-    | "coremedia"
-    | "deutschebahn"
-    | "deutschepost"
-    | "deutschetelekom"
-    | "thedailytelegraph"
-    | "axelspringer"
-    | "dhl"
-    | "dpa"
-    | "dumont"
-    | "dus"
-    | "ego"
-    | "erstebank"
-    | "gothaer"
-    | "grey"
-    | "gsicommerce"
-    | "guiadelocio"
-    | "handelsblatt"
-    | "haymarket"
-    | "idealstandard"
-    | "idg"
-    | "ikb"
-    | "ihk"
-    | "intershop"
-    | "kronenzeitung"
-    | "loreal"
-    | "lufthansa"
-    | "luxair"
-    | "mercedes"
-    | "miele"
-    | "mobilede"
-    | "mobilede"
-    | "netbank"
-    | "ralphlauren"
-    | "rwe"
-    | "suez"
-    | "tsystems"
-    | "theindependent"
-    | "tui"
-    | "unikoeln"
-    | "visualvest"
-    | "vodafone"
-    | "vw"
-    | "waz"
-    | "welt"
-    | "wien"
-    | "wincor"
-    | "sbs"
-    | "zeit"
-  >;
-
-  /**
    * CompanyLogo field in *Project*
    *
    * - **Field Type**: Image
@@ -706,6 +639,17 @@ interface ProjectDocumentData {
     | "Telco"
     | "Software"
   >;
+
+  /**
+   * Skills field in *Project*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.skills
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  skills: prismic.SelectField<"HR Management" | "Innovation Management">;
 }
 
 /**

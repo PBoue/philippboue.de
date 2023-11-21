@@ -26,70 +26,6 @@
           "placeholder": ""
         }
       },
-      "logo": {
-        "type": "Select",
-        "config": {
-          "label": "Logo",
-          "placeholder": "",
-          "options": [
-            "actimonda",
-            "adidas",
-            "alphaneun",
-            "antena3",
-            "axa",
-            "bmg",
-            "congstar",
-            "coremedia",
-            "deutschebahn",
-            "deutschepost",
-            "deutschetelekom",
-            "thedailytelegraph",
-            "axelspringer",
-            "dhl",
-            "dpa",
-            "dumont",
-            "dus",
-            "ego",
-            "erstebank",
-            "gothaer",
-            "grey",
-            "gsicommerce",
-            "guiadelocio",
-            "handelsblatt",
-            "haymarket",
-            "idealstandard",
-            "idg",
-            "ikb",
-            "ihk",
-            "intershop",
-            "kronenzeitung",
-            "loreal",
-            "lufthansa",
-            "luxair",
-            "mercedes",
-            "miele",
-            "mobilede",
-            "mobilede",
-            "netbank",
-            "ralphlauren",
-            "rwe",
-            "suez",
-            "tsystems",
-            "theindependent",
-            "tui",
-            "unikoeln",
-            "visualvest",
-            "vodafone",
-            "vw",
-            "waz",
-            "welt",
-            "wien",
-            "wincor",
-            "sbs",
-            "zeit"
-          ]
-        }
-      },
       "companylogo": {
         "type": "Image",
         "config": {
@@ -201,6 +137,14 @@
             "Telco",
             "Software"
           ]
+        }
+      },
+      "skills": {
+        "type": "Select",
+        "config": {
+          "label": "Skills",
+          "placeholder": "",
+          "options": ["HR Management", "Innovation Management"]
         }
       }
     }
