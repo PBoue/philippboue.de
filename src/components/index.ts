@@ -8,7 +8,7 @@ export * from './elements/Input'
 export * from './elements/Link'
 export * from './elements/Paragraph'
 export * from './elements/Table'
-
+export * from './ReferenceCard'
 export * from './ProgressBar'
 export * from './Logo'
 export * from './Header'

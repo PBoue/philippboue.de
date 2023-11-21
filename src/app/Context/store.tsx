@@ -9,6 +9,7 @@ import {
 } from "react";
 
 import { ThemeProvider } from "next-themes";
+import { NextUIProvider } from "@nextui-org/react";
 
 interface ContextProps {
 	mainMenu: boolean;
@@ -30,11 +31,13 @@ export const GlobalContextProvider = ({
 	const [mainMenu, setMainMenu] = useState(false);
 
 	return (
-		<ThemeProvider attribute="class" defaultTheme="light">
-			<GlobalContext.Provider value={{ mainMenu, setMainMenu }}>
-				{children}
-			</GlobalContext.Provider>
-		</ThemeProvider>
+		<NextUIProvider>
+			<ThemeProvider attribute="class" defaultTheme="light">
+				<GlobalContext.Provider value={{ mainMenu, setMainMenu }}>
+					{children}
+				</GlobalContext.Provider>
+			</ThemeProvider>
+		</NextUIProvider>
 	);
 };
 

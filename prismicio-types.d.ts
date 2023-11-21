@@ -556,6 +556,17 @@ interface ProjectDocumentData {
   >;
 
   /**
+   * CompanyLogo field in *Project*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.companylogo
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  companylogo: prismic.ImageField<never>;
+
+  /**
    * Excerpt field in *Project*
    *
    * - **Field Type**: Rich Text

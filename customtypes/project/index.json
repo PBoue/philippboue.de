@@ -90,6 +90,14 @@
           ]
         }
       },
+      "companylogo": {
+        "type": "Image",
+        "config": {
+          "label": "CompanyLogo",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
       "excerpt": {
         "type": "StructuredText",
         "config": {

@@ -1,7 +1,7 @@
 export function Vodafone() {
 	return (
 		<svg xmlns="http://www.w3.org/2000/svg" width="241" height="65" fill="none">
-			<g clipPath="url(#a)">
+			<g>
 				<path
 					fill="#0D0D0D"
 					d="M60.315 32.802c0 16.09-13.039 29.134-29.129 29.134-16.09 0-29.134-13.044-29.134-29.134S15.096 3.667 31.186 3.667s29.13 13.045 29.13 29.135Z"
