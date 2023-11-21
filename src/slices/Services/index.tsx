@@ -56,7 +56,6 @@ const Services = ({ slice }: ServicesProps): JSX.Element => {
 							<PrismicRichText field={item.title} components={components} />
 						</div>
 						<PrismicRichText field={item.description} components={components} />
-						<Link field={item.link}>{item.link_text}</Link>
 					</article>
 				))}
 			</div>
