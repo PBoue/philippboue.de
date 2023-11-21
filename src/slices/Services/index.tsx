@@ -16,7 +16,7 @@ import {
 
 const components: JSXMapSerializer = {
 	heading2: ({ children }) => (
-		<Heading as="h2" variant="md">
+		<Heading as="h2" variant="md" className="my-6 lg:my-12">
 			{children}
 		</Heading>
 	),

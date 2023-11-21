@@ -47,24 +47,21 @@ const Map = ({ slice }: MapProps): JSX.Element => {
 			data-slice-variation={slice.variation}
 		>
 			<PrismicRichText field={slice.primary.headline} components={components} />
-			<div className="mx-auto max-w-5xl text-center">
+			<div className="mx-auto max-w-5xl text-center my-0 py-0">
 				<PrismicRichText
 					field={slice.primary.subline}
 					components={components}
 				/>
 			</div>
 
-			<div
-				ref={ref}
-				className="flex w-[100%] text-center justify-center items-center"
-			>
+			<div ref={ref} className="flex w-full justify-center">
 				<svg
 					width="2040"
-					height="900"
+					height="680"
 					viewBox="0 0 510 260"
 					fill="none"
 					xmlns="http://www.w3.org/2000/svg"
-					className="w-full"
+					className="w-[80%]"
 				>
 					<g id="Map">
 						<motion.g

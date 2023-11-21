@@ -6,7 +6,13 @@ import {
 } from "@prismicio/react";
 
 import { createClient } from "@/prismicio";
-import { Container, Heading, Paragraph, ReferenceCard } from "@/components";
+import {
+	Container,
+	Heading,
+	Paragraph,
+	ReferenceCard,
+	Link,
+} from "@/components";
 
 const components: JSXMapSerializer = {
 	paragraph: ({ children }) => (
@@ -63,6 +69,12 @@ const References = async ({ slice }: ReferencesProps): Promise<JSX.Element> => {
 						/>
 					);
 				})}
+			</div>
+
+			<div className="flex justify-center mt-12">
+				<Link href="./projects" variant="ghost">
+					View all
+				</Link>
 			</div>
 		</Container>
 	);

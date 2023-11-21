@@ -37,7 +37,7 @@ const MainStage = ({ slice }: MainStageProps): JSX.Element => {
 		>
 			<div
 				ref={ref}
-				className="container max-w-7xl mx-auto w-full flex justify-between items-center md:pt-40 md:pb-40"
+				className="container max-w-7xl mx-auto w-full flex justify-between items-center py-6 md:py-12"
 			>
 				<motion.svg
 					viewBox="0 0 421 376"

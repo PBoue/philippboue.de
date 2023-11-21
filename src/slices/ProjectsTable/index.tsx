@@ -5,18 +5,9 @@ import {
 } from "@prismicio/react";
 import { Content, isFilled } from "@prismicio/client";
 import { createClient } from "@/prismicio";
+import { Accordion } from "@nextui-org/react";
 
-import {
-	Container,
-	Heading,
-	Paragraph,
-	Table,
-	TableBody,
-	TableCell,
-	TableHead,
-	TableHeader,
-	TableRow,
-} from "@/components";
+import { Container, Heading, Paragraph, ProjectAccordion } from "@/components";
 
 const components: JSXMapSerializer = {
 	heading2: ({ children }) => (
@@ -45,7 +36,7 @@ const ProjectsTable = async ({
 			if (isFilled.contentRelationship(item.project) && item.project.uid) {
 				return client.getByUID("project", item.project.uid);
 			}
-		})
+		}),
 	);
 
 	return (
@@ -60,35 +51,8 @@ const ProjectsTable = async ({
 					components={components}
 				/>
 			</div>
-			<Table>
-				<TableHeader>
-					<TableRow>
-						<TableHead className="font-black">Client/Employer</TableHead>
-						<TableHead className="font-black">Project Name</TableHead>
-						<TableHead className="font-black">Industry</TableHead>
-						<TableHead className="font-black">Country</TableHead>
-						<TableHead className="font-black">Start</TableHead>
-						<TableHead className="font-black">End</TableHead>
-					</TableRow>
-				</TableHeader>
-				<TableBody>
-					{projects.map((project, i) => (
-						<TableRow key={i}>
-							<TableCell>{project?.data.company_name}</TableCell>
-							<TableCell>{project?.data.name}</TableCell>
-							<TableCell>{project?.data.industry}</TableCell>
-							<TableCell>{project?.data.country}</TableCell>
-							<TableCell>
-								{project?.data.startdate &&
-									project?.data.startdate.substring(0, 4)}
-							</TableCell>
-							<TableCell>
-								{project?.data.enddate && project?.data.enddate.substring(0, 4)}
-							</TableCell>
-						</TableRow>
-					))}
-				</TableBody>
-			</Table>
+
+			<ProjectAccordion projects={projects as any} />
 		</Container>
 	);
 };
