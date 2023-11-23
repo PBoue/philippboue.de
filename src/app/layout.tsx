@@ -85,7 +85,7 @@ export default function RootLayout({
 			<body
 				className={clsx(
 					montserrat.variable,
-					"min-h-screen bg-white dark:bg-black",
+					"min-h-screen bg-white dark:bg-black font-body",
 				)}
 			>
 				<GlobalContextProvider>

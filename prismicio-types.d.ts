@@ -478,6 +478,39 @@ interface ProjectDocumentData {
   name: prismic.KeyTextField;
 
   /**
+   * Excerpt field in *Project*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Project Excerpt
+   * - **API ID Path**: project.excerpt
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  excerpt: prismic.RichTextField;
+
+  /**
+   * Screenshot field in *Project*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.screenshot
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  screenshot: prismic.ImageField<never>;
+
+  /**
+   * Link field in *Project*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: Link to project
+   * - **API ID Path**: project.link
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField;
+
+  /**
    * Company Name field in *Project*
    *
    * - **Field Type**: Text
@@ -500,59 +533,103 @@ interface ProjectDocumentData {
   companylogo: prismic.ImageField<never>;
 
   /**
-   * Excerpt field in *Project*
+   * Industry field in *Project*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.industry
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  industry: prismic.SelectField<
+    | "Agency"
+    | "Media & Publishers"
+    | "Retail & Consumer Goods"
+    | "Finance & Insurance"
+    | "Mobility"
+    | "Travel"
+    | "Telco"
+    | "Software"
+    | "Energy"
+  >;
+
+  /**
+   * Country field in *Project*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: Germany
+   * - **API ID Path**: project.country
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  country: prismic.SelectField<
+    | "Germany"
+    | "England"
+    | "Spain"
+    | "United States"
+    | "Netherlands"
+    | "Belgium"
+    | "France"
+    | "Luxemburg",
+    "filled"
+  >;
+
+  /**
+   * Client field in *Project*
    *
    * - **Field Type**: Rich Text
-   * - **Placeholder**: Project Excerpt
-   * - **API ID Path**: project.excerpt
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.client
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
-  excerpt: prismic.RichTextField;
+  client: prismic.RichTextField;
 
   /**
-   * Link field in *Project*
+   * Employer field in *Project*
    *
-   * - **Field Type**: Link
-   * - **Placeholder**: Link to project
-   * - **API ID Path**: project.link
+   * - **Field Type**: Select
+   * - **Placeholder**: Chose employer
+   * - **API ID Path**: project.employer
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   * - **Documentation**: https://prismic.io/docs/field#select
    */
-  link: prismic.LinkField;
+  employer: prismic.SelectField<
+    | "Freelanced"
+    | "Sevenval AG (now Avenga)"
+    | "YOC AG"
+    | "ubiiqu GmbH"
+    | "Kalaydo GmbH & Co. KG (now markt.de)"
+    | "people interactive GmbH (now Valtech)"
+    | "Valtech GmbH"
+    | "Alpha Neun GmbH & Co. KG"
+    | "P.Digital"
+    | "Kircher Burkhardt GmbH (now C3)"
+  >;
 
   /**
-   * Screenshot field in *Project*
+   * Role field in *Project*
    *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: project.screenshot
+   * - **Field Type**: Select
+   * - **Placeholder**: Chose
+   * - **API ID Path**: project.role
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#image
+   * - **Documentation**: https://prismic.io/docs/field#select
    */
-  screenshot: prismic.ImageField<never>;
-
-  /**
-   * Startdate field in *Project*
-   *
-   * - **Field Type**: Date
-   * - **Placeholder**: *None*
-   * - **API ID Path**: project.startdate
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#date
-   */
-  startdate: prismic.DateField;
-
-  /**
-   * Enddate field in *Project*
-   *
-   * - **Field Type**: Date
-   * - **Placeholder**: *None*
-   * - **API ID Path**: project.enddate
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#date
-   */
-  enddate: prismic.DateField;
+  role: prismic.SelectField<
+    | "Chose"
+    | "Project Manager"
+    | "Product Owner"
+    | "Senior Manager Business Development"
+    | "UX/UI Designer"
+    | "Frontend-Developer"
+    | "Strategy Consultant"
+    | "Head of Product"
+    | "Creative Director"
+    | "Executive Creative Director"
+    | "Managing Director"
+  >;
 
   /**
    * Management field in *Project*
@@ -588,57 +665,26 @@ interface ProjectDocumentData {
   code: prismic.NumberField;
 
   /**
-   * Client field in *Project*
+   * Startdate field in *Project*
    *
-   * - **Field Type**: Rich Text
+   * - **Field Type**: Date
    * - **Placeholder**: *None*
-   * - **API ID Path**: project.client
+   * - **API ID Path**: project.startdate
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   * - **Documentation**: https://prismic.io/docs/field#date
    */
-  client: prismic.RichTextField;
+  startdate: prismic.DateField;
 
   /**
-   * Country field in *Project*
+   * Enddate field in *Project*
    *
-   * - **Field Type**: Select
+   * - **Field Type**: Date
    * - **Placeholder**: *None*
-   * - **Default Value**: Germany
-   * - **API ID Path**: project.country
+   * - **API ID Path**: project.enddate
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#select
+   * - **Documentation**: https://prismic.io/docs/field#date
    */
-  country: prismic.SelectField<
-    | "Germany"
-    | "England"
-    | "Spain"
-    | "United States"
-    | "Netherlands"
-    | "Belgium"
-    | "France"
-    | "Luxemburg",
-    "filled"
-  >;
-
-  /**
-   * Industry field in *Project*
-   *
-   * - **Field Type**: Select
-   * - **Placeholder**: *None*
-   * - **API ID Path**: project.industry
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#select
-   */
-  industry: prismic.SelectField<
-    | "Agency"
-    | "Media & Publishers"
-    | "Retail & Consumer Goods"
-    | "Finance & Insurance"
-    | "Mobility"
-    | "Travel"
-    | "Telco"
-    | "Software"
-  >;
+  enddate: prismic.DateField;
 }
 
 /**

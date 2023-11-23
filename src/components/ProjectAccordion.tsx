@@ -4,7 +4,7 @@ import React from "react";
 import { FC } from "react";
 import { PrismicRichText } from "@prismicio/react";
 import { PrismicNextImage } from "@prismicio/next";
-import { Accordion, AccordionItem, Chip } from "@nextui-org/react";
+import { Accordion, AccordionItem, Chip, Progress } from "@nextui-org/react";
 
 interface ProjectAccordionProps {
 	projects: [
@@ -61,6 +61,84 @@ export const ProjectAccordion: FC<ProjectAccordionProps> = ({ projects }) => {
 								</div>
 							)}
 
+							<div className="grid grid-cols-1 gap-1 p-4	 even:bg-black/5 sm:grid-cols-3 sm:gap-4">
+								<dt className="font-medium text-black">Industry</dt>
+								<dd className="text-black sm:col-span-2">
+									{project.data.industry}
+								</dd>
+							</div>
+
+							<div className="grid grid-cols-1 gap-1 p-4 even:bg-black/5 sm:grid-cols-3 sm:gap-4">
+								<dt className="font-medium text-black">Employer / Client</dt>
+								<dd className="text-black sm:col-span-2">
+									{project.data.employer}
+								</dd>
+							</div>
+
+							<div className="grid grid-cols-1 gap-1 p-4 even:bg-black/5 sm:grid-cols-3 sm:gap-4">
+								<dt className="font-medium text-black">Role</dt>
+								<dd className="text-black sm:col-span-2">
+									{project.data.role}
+								</dd>
+							</div>
+
+							<div className="grid grid-cols-1 gap-1 p-4 even:bg-black/5 sm:grid-cols-3 sm:gap-4">
+								<dt className="font-medium text-black">Tasks</dt>
+								<dd className="text-black sm:col-span-2">
+									<Progress
+										size="sm"
+										radius="sm"
+										classNames={{
+											base: "max-w-full mb-6",
+											track: "bg-black/30",
+											indicator: "bg-gradient-to-r from-magenta to-cyan",
+											label: "tracking-wider font-medium text-default-600",
+											value: "text-foreground/60",
+										}}
+										label="Management"
+										value={project.data.management}
+										showValueLabel={true}
+									/>
+
+									<Progress
+										size="sm"
+										radius="sm"
+										classNames={{
+											base: "max-w-full mb-6",
+											track: "bg-black/30",
+											indicator: "bg-gradient-to-r from-magenta to-cyan",
+											label: "tracking-wider font-medium text-default-600",
+											value: "text-foreground/60",
+										}}
+										label="Design"
+										value={project.data.design}
+										showValueLabel={true}
+									/>
+
+									<Progress
+										size="sm"
+										radius="sm"
+										classNames={{
+											base: "max-w-full",
+											track: "bg-black/30",
+											indicator: "bg-gradient-to-r from-magenta to-cyan",
+											label: "tracking-wider font-medium text-default-600",
+											value: "text-foreground/60",
+										}}
+										label="Code"
+										value={project.data.code}
+										showValueLabel={true}
+									/>
+								</dd>
+							</div>
+
+							<div className="grid grid-cols-1 gap-1 p-4 even:bg-black/5 sm:grid-cols-3 sm:gap-4">
+								<dt className="font-medium text-black">Country</dt>
+								<dd className="text-black sm:col-span-2">
+									{project.data.country}
+								</dd>
+							</div>
+
 							<div className="grid grid-cols-1 gap-1 p-4 even:bg-black/5 sm:grid-cols-3 sm:gap-4">
 								<dt className="font-medium text-black">Dates</dt>
 								<dd className="text-black sm:col-span-2">
@@ -70,27 +148,6 @@ export const ProjectAccordion: FC<ProjectAccordionProps> = ({ projects }) => {
 										: project.data.startdate.substring(0, 4) +
 										  " - " +
 										  project.data.enddate.substring(0, 4)}
-								</dd>
-							</div>
-
-							<div className="grid grid-cols-1 gap-1 p-4	 even:bg-black/5 sm:grid-cols-3 sm:gap-4">
-								<dt className="font-medium text-black">Industry</dt>
-								<dd className="text-black sm:col-span-2">
-									{project.data.industry}
-								</dd>
-							</div>
-
-							<div className="grid grid-cols-1 gap-1 p-4 even:bg-black/5 sm:grid-cols-3 sm:gap-4">
-								<dt className="font-medium text-black">Employer</dt>
-								<dd className="text-black sm:col-span-2">
-									{project.data.client[0].text}
-								</dd>
-							</div>
-
-							<div className="grid grid-cols-1 gap-1 p-4 even:bg-black/5 sm:grid-cols-3 sm:gap-4">
-								<dt className="font-medium text-black">Country</dt>
-								<dd className="text-black sm:col-span-2">
-									{project.data.country}
 								</dd>
 							</div>
 						</dl>

@@ -5,7 +5,6 @@ import {
 } from "@prismicio/react";
 import { Content, isFilled } from "@prismicio/client";
 import { createClient } from "@/prismicio";
-import { Accordion } from "@nextui-org/react";
 
 import { Container, Heading, Paragraph, ProjectAccordion } from "@/components";
 

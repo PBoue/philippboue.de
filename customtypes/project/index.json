@@ -19,6 +19,32 @@
           "placeholder": "Project Name"
         }
       },
+      "excerpt": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Excerpt",
+          "placeholder": "Project Excerpt",
+          "allowTargetBlank": true,
+          "multi": "paragraph,hyperlink"
+        }
+      },
+      "screenshot": {
+        "type": "Image",
+        "config": {
+          "label": "Screenshot",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "link": {
+        "type": "Link",
+        "config": {
+          "label": "Link",
+          "placeholder": "Link to project",
+          "allowTargetBlank": false,
+          "select": null
+        }
+      },
       "company_name": {
         "type": "Text",
         "config": {
@@ -34,44 +60,88 @@
           "thumbnails": []
         }
       },
-      "excerpt": {
+      "industry": {
+        "type": "Select",
+        "config": {
+          "label": "Industry",
+          "placeholder": "",
+          "options": [
+            "Agency",
+            "Media & Publishers",
+            "Retail & Consumer Goods",
+            "Finance & Insurance",
+            "Mobility",
+            "Travel",
+            "Telco",
+            "Software",
+            "Energy"
+          ]
+        }
+      },
+      "country": {
+        "type": "Select",
+        "config": {
+          "label": "Country",
+          "placeholder": "",
+          "options": [
+            "Germany",
+            "England",
+            "Spain",
+            "United States",
+            "Netherlands",
+            "Belgium",
+            "France",
+            "Luxemburg"
+          ],
+          "default_value": "Germany"
+        }
+      },
+      "client": {
         "type": "StructuredText",
         "config": {
-          "label": "Excerpt",
-          "placeholder": "Project Excerpt",
+          "label": "Client",
+          "placeholder": "",
           "allowTargetBlank": true,
-          "multi": "paragraph,hyperlink"
+          "single": "paragraph,strong,em,hyperlink"
         }
       },
-      "link": {
-        "type": "Link",
+      "employer": {
+        "type": "Select",
         "config": {
-          "label": "Link",
-          "placeholder": "Link to project",
-          "allowTargetBlank": false,
-          "select": null
+          "label": "Employer",
+          "placeholder": "Chose employer",
+          "options": [
+            "Freelanced",
+            "Sevenval AG (now Avenga)",
+            "YOC AG",
+            "ubiiqu GmbH",
+            "Kalaydo GmbH & Co. KG (now markt.de)",
+            "people interactive GmbH (now Valtech)",
+            "Valtech GmbH",
+            "Alpha Neun GmbH & Co. KG",
+            "P.Digital",
+            "Kircher Burkhardt GmbH (now C3)"
+          ]
         }
       },
-      "screenshot": {
-        "type": "Image",
+      "role": {
+        "type": "Select",
         "config": {
-          "label": "Screenshot",
-          "constraint": {},
-          "thumbnails": []
-        }
-      },
-      "startdate": {
-        "type": "Date",
-        "config": {
-          "label": "Startdate",
-          "placeholder": ""
-        }
-      },
-      "enddate": {
-        "type": "Date",
-        "config": {
-          "label": "Enddate",
-          "placeholder": ""
+          "label": "Role",
+          "placeholder": "Chose",
+          "options": [
+            "Chose",
+            "Project Manager",
+            "Product Owner",
+            "Senior Manager Business Development",
+            "UX/UI Designer",
+            "Frontend-Developer",
+            "Strategy Consultant",
+            "Head of Product",
+            "Creative Director",
+            "Executive Creative Director",
+            "Managing Director"
+          ]
         }
       },
       "management": {
@@ -95,48 +165,18 @@
           "placeholder": ""
         }
       },
-      "client": {
-        "type": "StructuredText",
+      "startdate": {
+        "type": "Date",
         "config": {
-          "label": "Client",
-          "placeholder": "",
-          "allowTargetBlank": true,
-          "single": "paragraph,strong,em,hyperlink"
+          "label": "Startdate",
+          "placeholder": ""
         }
       },
-      "country": {
-        "type": "Select",
+      "enddate": {
+        "type": "Date",
         "config": {
-          "label": "Country",
-          "placeholder": "",
-          "options": [
-            "Germany",
-            "England",
-            "Spain",
-            "United States",
-            "Netherlands",
-            "Belgium",
-            "France",
-            "Luxemburg"
-          ],
-          "default_value": "Germany"
-        }
-      },
-      "industry": {
-        "type": "Select",
-        "config": {
-          "label": "Industry",
-          "placeholder": "",
-          "options": [
-            "Agency",
-            "Media & Publishers",
-            "Retail & Consumer Goods",
-            "Finance & Insurance",
-            "Mobility",
-            "Travel",
-            "Telco",
-            "Software"
-          ]
+          "label": "Enddate",
+          "placeholder": ""
         }
       }
     }
