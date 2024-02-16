@@ -39,7 +39,7 @@ const SkillsTable = async ({
 			) {
 				return client.getByUID("skill_group", item.skill_group.uid);
 			}
-		})
+		}),
 	);
 
 	return (
@@ -48,7 +48,7 @@ const SkillsTable = async ({
 			data-slice-variation={slice.variation}
 		>
 			<PrismicRichText field={slice.primary.headline} components={components} />
-			<div className="mx-auto max-w-5xl text-center pb-10">
+			<div className="mx-auto max-w-5xl text-center">
 				<PrismicRichText
 					field={slice.primary.subline}
 					components={components}
@@ -58,13 +58,13 @@ const SkillsTable = async ({
 			{skills.map((skill, i) => (
 				<div key={i} className="">
 					<PrismicRichText field={skill?.data.title} components={components} />
-					<div className="mx-auto max-w-5xl text-left pb-10 grid grid-cols-2 gap-y-5 gap-x-20">
+					<div className="mx-auto max-w-5xl text-left pb-10 grid grid-cols-1 md:grid-cols-2 gap-y-5 gap-x-20">
 						{skill?.data.skills.map((item, x) => (
 							<div key={x} className="flex flex-col">
-								<div className="text-black dark:text-white w-full pb-5">
+								<div className="text-black dark:text-white w-full pb-3 md:pb-5">
 									{item.name} (since {item.start})
 								</div>
-								<div className="pb-5 w-full">
+								<div className="pb-2 md:pb-5 w-full">
 									<div
 										className="relative overflow-hidden bg-black/10 dark:bg-white/20 rounded-full w-full h-3"
 										style={{

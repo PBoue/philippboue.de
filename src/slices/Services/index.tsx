@@ -43,16 +43,16 @@ const Services = ({ slice }: ServicesProps): JSX.Element => {
 			data-slice-variation={slice.variation}
 		>
 			<PrismicRichText field={slice.primary.headline} components={components} />
-			<div className="mx-auto grid max-w-2xl grid-cols-1 gap-10 lg:max-w-none lg:grid-cols-3">
+			<div className="mx-auto grid max-w-2xl grid-cols-1 gap-10 lg:max-w-none lg:grid-cols-3 pb-10 md:pb-0">
 				{slice.items.map((item, index) => (
 					<article
 						key={index}
-						className="rounded-md bg-cyan dark:bg-white dark:text-black p-4 shadow-sm transition hover:shadow-lg sm:p-6"
+						className="rounded-md bg-cyan dark:bg-white dark:text-black px-10 pt-10 shadow-sm transition hover:shadow-lg"
 					>
 						<div className="flex justify-center">
 							{item.icon && <>{icons[item.icon]}</>}
 						</div>
-						<div className="h-36 flex items-center max-w-[60%] justify-center mr-auto ml-auto">
+						<div className="md:h-36 flex items-center max-w-[60%] justify-center mr-auto ml-auto">
 							<PrismicRichText field={item.title} components={components} />
 						</div>
 						<PrismicRichText field={item.description} components={components} />

@@ -1,7 +1,7 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
-const headingVariants = cva("text-center leading-[1.4] py-10", {
+const headingVariants = cva("text-center leading-[1.4] py-4 md:py-10", {
 	variants: {
 		variant: {
 			sm: "text-2xl md:text-3xl lg:text-4xl font-bold",

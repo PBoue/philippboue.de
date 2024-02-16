@@ -37,11 +37,11 @@ const MainStage = ({ slice }: MainStageProps): JSX.Element => {
 		>
 			<div
 				ref={ref}
-				className="container max-w-7xl mx-auto w-full flex justify-between items-center py-6 md:py-12"
+				className="container max-w-7xl mx-auto w-full flex justify-between items-center pt-20 md:pt-16 px-0 mt-8"
 			>
 				<motion.svg
 					viewBox="0 0 421 376"
-					className="fill-none full md:w-2/3 relative z-10"
+					className="fill-none full w-3/4 md:w-2/3 relative z-10"
 					xmlns="http://www.w3.org/2000/svg"
 				>
 					<g id="cover">
@@ -193,10 +193,10 @@ const MainStage = ({ slice }: MainStageProps): JSX.Element => {
 					</g>
 				</motion.svg>
 				<motion.div
-					className="absolute right-0 top-1/3"
+					className="absolute right-0 h-auto w-3/5 md:w-2/3"
 					variants={{
-						hidden: { x: 2000 },
-						visible: { x: 0 },
+						hidden: { x: 2000, y: 0 },
+						visible: { x: 0, y: 0 },
 					}}
 					initial="hidden"
 					animate={mainControls}

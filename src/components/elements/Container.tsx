@@ -15,7 +15,7 @@ export function Container({
 	return (
 		<Comp
 			className={clsx(
-				"flex dark:bg-black items-center justify-between py-6 lg:py-12 overflow-hidden w-screen relative z-30",
+				"flex dark:bg-black items-center justify-between py-4 md:py-6 lg:py-12 overflow-hidden w-screen relative z-30",
 				className,
 			)}
 			{...restProps}

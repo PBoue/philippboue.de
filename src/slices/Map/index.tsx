@@ -54,14 +54,17 @@ const Map = ({ slice }: MapProps): JSX.Element => {
 				/>
 			</div>
 
-			<div ref={ref} className="flex w-full justify-center">
+			<div
+				ref={ref}
+				className="flex w-full h-[320px] md:h-[900px] justify-center"
+			>
 				<svg
 					width="2040"
 					height="680"
 					viewBox="0 0 510 260"
 					fill="none"
 					xmlns="http://www.w3.org/2000/svg"
-					className="w-[80%]"
+					className="h-[320px] md:h-[900px] w-full md:w-4/5"
 				>
 					<g id="Map">
 						<motion.g
