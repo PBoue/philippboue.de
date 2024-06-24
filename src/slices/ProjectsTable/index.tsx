@@ -1,12 +1,12 @@
+import { Content, isFilled } from "@prismicio/client";
+import { createClient } from "@/prismicio";
+import { Container, Heading, Paragraph } from "@/components";
 import {
 	SliceComponentProps,
 	PrismicRichText,
 	JSXMapSerializer,
 } from "@prismicio/react";
-import { Content, isFilled } from "@prismicio/client";
-import { createClient } from "@/prismicio";
-
-import { Container, Heading, Paragraph, ProjectAccordion } from "@/components";
+import { ProjectAccordion } from "@/components/ProjectAccordion";
 
 const components: JSXMapSerializer = {
 	heading2: ({ children }) => (
@@ -51,7 +51,7 @@ const ProjectsTable = async ({
 				/>
 			</div>
 
-			<ProjectAccordion projects={projects as any} />
+			{projects && <ProjectAccordion projects={projects as any} />}
 		</Container>
 	);
 };

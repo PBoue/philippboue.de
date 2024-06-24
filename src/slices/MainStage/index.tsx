@@ -208,7 +208,7 @@ const MainStage = ({ slice }: MainStageProps): JSX.Element => {
 						stiffness: 100,
 					}}
 				>
-					<PrismicNextImage field={slice.primary.image} />
+					<PrismicNextImage field={slice.primary.image} priority />
 				</motion.div>
 			</div>
 		</Container>

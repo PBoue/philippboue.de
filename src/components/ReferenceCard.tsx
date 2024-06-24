@@ -25,7 +25,7 @@ export const ReferenceCard: FC<ReferenceCardProps> = ({
 			shadow="sm"
 			radius="sm"
 			key={index}
-			className=" opacity-50 hover:opacity-100"
+			className="opacity-50 hover:opacity-100 dark:bg-white dark:text-black"
 		>
 			<CardBody className="h-[130px] w-full items-center justify-center">
 				<PrismicNextImage

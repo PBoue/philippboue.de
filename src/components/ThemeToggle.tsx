@@ -2,28 +2,21 @@
 
 import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
-
-import { Label } from "@/components/elements/Label";
 import { Switch } from "@nextui-org/react";
 import { MoonIcon } from "./icons/MoonIcon";
 import { SunIcon } from "./icons/SunIcon";
 
 export const ThemeToggle = () => {
-	const [mounted, setMounted] = useState(false);
-	const { theme, setTheme } = useTheme();
+	const [isDark, setIsDark] = useState(Boolean);
+	const { theme, setTheme, resolvedTheme } = useTheme();
 
 	useEffect(() => {
-		setMounted(true);
-	}, []);
-
-	if (!mounted) {
-		return null;
-	}
+		resolvedTheme === "light" ? setIsDark(false) : setIsDark(true);
+		return () => {};
+	}, [resolvedTheme]);
 
 	function toggleTheme() {
-		let swapTheme = "light";
-		if (theme === "light") swapTheme = "dark";
-		setTheme(swapTheme);
+		setTheme(resolvedTheme === "light" ? "dark" : "light");
 	}
 
 	return (

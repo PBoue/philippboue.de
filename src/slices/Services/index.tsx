@@ -25,7 +25,11 @@ const components: JSXMapSerializer = {
 			{children}
 		</Heading>
 	),
-	paragraph: ({ children }) => <Paragraph color="black">{children}</Paragraph>,
+	paragraph: ({ children }) => (
+		<Paragraph color="black" className="dark:text-black">
+			{children}
+		</Paragraph>
+	),
 };
 
 const icons = {
