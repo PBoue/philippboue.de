@@ -28,7 +28,7 @@ export type MapProps = SliceComponentProps<Content.MapSlice>;
 /**
  * Component for "Map" Slices.
  */
-const Map = ({ slice }: MapProps): JSX.Element => {
+const Map = ({ slice }: MapProps): React.ReactElement => {
 	const ref = useRef(null);
 	const isInView = useInView(ref, { once: true });
 	const mapControls = useAnimation();

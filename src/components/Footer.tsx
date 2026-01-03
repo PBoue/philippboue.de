@@ -8,7 +8,7 @@ export const Footer = async () => {
 
 	return (
 		<footer className="bg-black border-t border-cyan relative z-40">
-			<div className="container max-w-7xl mx-auto py-10">
+			<div className="container max-w-400 mx-auto py-10 px-4">
 				<div className="flex flex-col-reverse md:flex-row gap-10 items-center justify-between">
 					<ul className="flex flex-wrap justify-center gap-4 text-xs lg:justify-end">
 						{settings.data.footer_links.map(({ link, label }, i) => (
@@ -46,7 +46,7 @@ export const Footer = async () => {
 										</svg>
 									</PrismicNextLink>
 								</li>
-							)
+							),
 						)}
 					</ul>
 				</div>

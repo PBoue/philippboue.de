@@ -36,7 +36,7 @@ export type TablesProps = SliceComponentProps<Content.TablesSlice>;
 /**
  * Component for "Tables" Slices.
  */
-const Tables = ({ slice }: TablesProps): JSX.Element => {
+const Tables = ({ slice }: TablesProps): React.ReactElement => {
 	return (
 		<Container
 			data-slice-type={slice.slice_type}

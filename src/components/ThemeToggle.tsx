@@ -2,35 +2,35 @@
 
 import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
-import { Switch } from "@nextui-org/react";
+import { Switch } from "@/components/elements/Switch";
 import { MoonIcon } from "./icons/MoonIcon";
 import { SunIcon } from "./icons/SunIcon";
+import { Label } from "@/components/elements/Label";
 
 export const ThemeToggle = () => {
-	const [isDark, setIsDark] = useState(Boolean);
-	const { theme, setTheme, resolvedTheme } = useTheme();
+	const [mounted, setMounted] = useState(false);
+	const { resolvedTheme, setTheme } = useTheme();
 
+	// Avoid hydration mismatch
 	useEffect(() => {
-		resolvedTheme === "light" ? setIsDark(false) : setIsDark(true);
-		return () => {};
-	}, [resolvedTheme]);
+		setMounted(true);
+	}, []);
 
-	function toggleTheme() {
-		setTheme(resolvedTheme === "light" ? "dark" : "light");
+	if (!mounted) {
+		return null;
 	}
 
+	const isDark = resolvedTheme === "dark";
+
 	return (
-		<div className="flex flex-row gap-5 items-center self-end">
+		<div className="flex flex-row gap-3 items-center">
+			<SunIcon className="w-5 h-5 text-black dark:text-white" />
 			<Switch
-				defaultSelected
-				onValueChange={toggleTheme}
-				size="lg"
-				color="default"
-				startContent={<SunIcon />}
-				endContent={<MoonIcon />}
-			>
-				Dark mode
-			</Switch>
+				checked={isDark}
+				onCheckedChange={(checked) => setTheme(checked ? "dark" : "light")}
+				aria-label="Toggle dark mode"
+			/>
+			<MoonIcon className="w-5 h-5 text-black dark:text-white" />
 		</div>
 	);
 };

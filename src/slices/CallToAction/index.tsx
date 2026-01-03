@@ -29,7 +29,7 @@ export type CallToActionProps = SliceComponentProps<Content.CallToActionSlice>;
 /**
  * Component for "CallToAction" Slices.
  */
-const CallToAction = ({ slice }: CallToActionProps): JSX.Element => {
+const CallToAction = ({ slice }: CallToActionProps): React.ReactElement => {
 	return (
 		<Container
 			data-slice-type={slice.slice_type}

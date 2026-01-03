@@ -1,12 +1,13 @@
 "use client";
 
-import { FC } from "react";
+import type { FC } from "react";
+import type { ImageField } from "@prismicio/client";
 import { PrismicNextImage } from "@prismicio/next";
 import { Card, CardBody, CardFooter } from "@nextui-org/react";
 
 export interface ReferenceCardProps {
 	index: number;
-	companylogo: any;
+	companylogo: ImageField | null;
 	company_name: string;
 	industry: string;
 	startdate: string;

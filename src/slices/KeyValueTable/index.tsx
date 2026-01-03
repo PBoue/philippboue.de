@@ -23,7 +23,7 @@ export type KeyValueTableProps =
 /**
  * Component for "KeyValueTable" Slices.
  */
-const KeyValueTable = ({ slice }: KeyValueTableProps): JSX.Element => {
+const KeyValueTable = ({ slice }: KeyValueTableProps): React.ReactElement => {
 	return (
 		<Container
 			data-slice-type={slice.slice_type}

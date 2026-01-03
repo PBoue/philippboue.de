@@ -1,22 +1,14 @@
 "use client";
 
-import React from "react";
-import { FC } from "react";
-import { PrismicRichText, JSXMapSerializer } from "@prismicio/react";
+import type { FC } from "react";
+import type { Content } from "@prismicio/client";
+import { PrismicRichText, type JSXMapSerializer } from "@prismicio/react";
 import { PrismicNextImage } from "@prismicio/next";
 import { Heading, Paragraph } from "@/components";
 import { Accordion, AccordionItem, Chip, Progress } from "@nextui-org/react";
 
 export interface ProjectAccordionProps {
-	projects: [
-		{
-			data: {
-				company_name: string;
-				name: string;
-				image: any;
-			};
-		},
-	];
+	projects: (Content.ProjectDocument | undefined)[];
 }
 
 const components: JSXMapSerializer = {
@@ -33,12 +25,16 @@ const components: JSXMapSerializer = {
 };
 
 export const ProjectAccordion: FC<ProjectAccordionProps> = ({ projects }) => {
+	const validProjects = projects.filter(
+		(project): project is Content.ProjectDocument => project !== undefined,
+	);
+
 	return (
 		<Accordion>
-			{projects.map((project: any, i: number) => (
+			{validProjects.map((project, i) => (
 				<AccordionItem
-					key={i}
-					aria-label={project.data.name}
+					key={project.id || i}
+					aria-label={project.data.name ?? ""}
 					startContent={
 						<PrismicNextImage
 							field={project.data.companylogo}
@@ -123,7 +119,7 @@ export const ProjectAccordion: FC<ProjectAccordionProps> = ({ projects }) => {
 											value: "text-foreground/60",
 										}}
 										label="Management"
-										value={project.data.management}
+										value={project.data.management ?? 0}
 										showValueLabel={true}
 									/>
 
@@ -138,7 +134,7 @@ export const ProjectAccordion: FC<ProjectAccordionProps> = ({ projects }) => {
 											value: "text-foreground/60",
 										}}
 										label="Design"
-										value={project.data.design}
+										value={project.data.design ?? 0}
 										showValueLabel={true}
 									/>
 
@@ -153,7 +149,7 @@ export const ProjectAccordion: FC<ProjectAccordionProps> = ({ projects }) => {
 											value: "text-foreground/60",
 										}}
 										label="Code"
-										value={project.data.code}
+										value={project.data.code ?? 0}
 										showValueLabel={true}
 									/>
 								</dd>
@@ -173,12 +169,12 @@ export const ProjectAccordion: FC<ProjectAccordionProps> = ({ projects }) => {
 									Dates
 								</dt>
 								<dd className="text-black sm:col-span-2">
-									{project.data.startdate.substring(0, 4) ===
-									project.data.enddate.substring(0, 4)
-										? project.data.startdate.substring(0, 4)
-										: project.data.startdate.substring(0, 4) +
-										  " - " +
-										  project.data.enddate.substring(0, 4)}
+									{project.data.startdate?.substring(0, 4) ===
+									project.data.enddate?.substring(0, 4)
+										? project.data.startdate?.substring(0, 4)
+										: (project.data.startdate?.substring(0, 4) ?? "") +
+											" - " +
+											(project.data.enddate?.substring(0, 4) ?? "")}
 								</dd>
 							</div>
 						</dl>

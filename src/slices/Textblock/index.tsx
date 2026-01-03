@@ -35,7 +35,7 @@ export type TextblockProps = SliceComponentProps<Content.TextblockSlice>;
 /**
  * Component for "CallToAction" Slices.
  */
-const Textblock = ({ slice }: TextblockProps): JSX.Element => {
+const Textblock = ({ slice }: TextblockProps): React.ReactElement => {
 	return (
 		<Container
 			data-slice-type={slice.slice_type}

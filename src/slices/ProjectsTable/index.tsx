@@ -1,10 +1,11 @@
-import { Content, isFilled } from "@prismicio/client";
+import type { Content } from "@prismicio/client";
+import { isFilled } from "@prismicio/client";
 import { createClient } from "@/prismicio";
 import { Container, Heading, Paragraph } from "@/components";
 import {
-	SliceComponentProps,
+	type SliceComponentProps,
 	PrismicRichText,
-	JSXMapSerializer,
+	type JSXMapSerializer,
 } from "@prismicio/react";
 import { ProjectAccordion } from "@/components/ProjectAccordion";
 
@@ -27,14 +28,15 @@ export type ProjectsTableProps =
  */
 const ProjectsTable = async ({
 	slice,
-}: ProjectsTableProps): Promise<JSX.Element> => {
+}: ProjectsTableProps): Promise<React.ReactElement> => {
 	const client = createClient();
 
 	const projects = await Promise.all(
-		slice.items.map((item: any) => {
+		slice.items.map((item) => {
 			if (isFilled.contentRelationship(item.project) && item.project.uid) {
 				return client.getByUID("project", item.project.uid);
 			}
+			return undefined;
 		}),
 	);
 
@@ -51,7 +53,7 @@ const ProjectsTable = async ({
 				/>
 			</div>
 
-			{projects && <ProjectAccordion projects={projects as any} />}
+			{projects && <ProjectAccordion projects={projects} />}
 		</Container>
 	);
 };

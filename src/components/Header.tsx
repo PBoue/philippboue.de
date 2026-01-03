@@ -1,16 +1,16 @@
 import Link from "next/link";
 import { createClient } from "@/prismicio";
 import { Logo, ProgressBar } from "@/components";
-import { MainMenu, MainMenuProps } from "@/components/MainMenu";
+import { MainMenu } from "@/components/MainMenu";
 
 export const Header = async () => {
 	const client = createClient();
-	const settings: any = await client.getSingle("settings");
+	const settings = await client.getSingle("settings");
 
 	return (
 		<>
 			<header className="h-20 fixed top-0 left-0 right-0 z-50 backdrop-blur-sm bg-white/75 dark:bg-black border-black/25 dark:border-cyan shadow-sm flex items-center justify-between">
-				<div className="container max-w-7xl mx-auto w-full flex justify-between items-center">
+				<div className="container max-w-400 mx-auto w-full flex justify-between items-center px-4">
 					<Link href="/">
 						<Logo />
 					</Link>

@@ -28,7 +28,7 @@ export type SkillsTableProps = SliceComponentProps<Content.SkillsTableSlice>;
 
 const SkillsTable = async ({
 	slice,
-}: SkillsTableProps): Promise<JSX.Element> => {
+}: SkillsTableProps): Promise<React.ReactElement> => {
 	const client = createClient();
 
 	const skills = await Promise.all(

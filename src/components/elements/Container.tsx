@@ -20,7 +20,7 @@ export function Container({
 			)}
 			{...restProps}
 		>
-			<div className="container max-w-7xl mx-auto px-4">{children}</div>
+			<div className="container max-w-400 mx-auto px-4">{children}</div>
 		</Comp>
 	);
 }

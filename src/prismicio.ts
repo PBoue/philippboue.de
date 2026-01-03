@@ -28,23 +28,20 @@ const routes: prismic.ClientConfig["routes"] = [
  * Creates a Prismic client for the project's repository. The client is used to
  * query content from the Prismic API.
  *
- * @param config - Configuration for the Prismic client.
+ * @param clientConfig - Configuration for the Prismic client.
  */
-export const createClient = (config: prismicNext.CreateClientConfig = {}) => {
+export const createClient = (clientConfig: prismic.ClientConfig = {}) => {
     const client = prismic.createClient(repositoryName, {
         routes,
         fetchOptions:
             process.env.NODE_ENV === "production"
                 ? { next: { tags: ["prismic"] }, cache: "force-cache" }
                 : { next: { revalidate: 5 } },
-        ...config,
+        ...clientConfig,
     });
 
-    prismicNext.enableAutoPreviews({
-        client,
-        previewData: config.previewData,
-        req: config.req,
-    });
+    // For App Router, enableAutoPreviews only needs the client
+    prismicNext.enableAutoPreviews({ client });
 
     return client;
 };

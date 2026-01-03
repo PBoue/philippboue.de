@@ -40,7 +40,7 @@ const icons = {
 
 export type ServicesProps = SliceComponentProps<Content.ServicesSlice>;
 
-const Services = ({ slice }: ServicesProps): JSX.Element => {
+const Services = ({ slice }: ServicesProps): React.ReactElement => {
 	return (
 		<Container
 			data-slice-type={slice.slice_type}

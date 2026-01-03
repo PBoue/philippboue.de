@@ -29,7 +29,9 @@ const components: JSXMapSerializer = {
 
 export type ReferencesProps = SliceComponentProps<Content.ReferencesSlice>;
 
-const References = async ({ slice }: ReferencesProps): Promise<JSX.Element> => {
+const References = async ({
+	slice,
+}: ReferencesProps): Promise<React.ReactElement> => {
 	const client = createClient();
 
 	const projects = await Promise.all(
@@ -61,7 +63,7 @@ const References = async ({ slice }: ReferencesProps): Promise<JSX.Element> => {
 						<ReferenceCard
 							key={i}
 							index={i}
-							companylogo={project?.data.companylogo}
+							companylogo={project?.data.companylogo ?? null}
 							company_name={project?.data.company_name as string}
 							industry={project?.data.industry as string}
 							startdate={startdate as string}

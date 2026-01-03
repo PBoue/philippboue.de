@@ -1,6 +1,6 @@
-import React from "react";
+import type { SVGProps } from "react";
 
-export const MoonIcon = (props: any) => (
+export const MoonIcon = (props: SVGProps<SVGSVGElement>) => (
 	<svg
 		aria-hidden="true"
 		focusable="false"

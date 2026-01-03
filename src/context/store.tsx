@@ -3,11 +3,11 @@
 import {
 	createContext,
 	useContext,
-	Dispatch,
-	SetStateAction,
 	useState,
+	type Dispatch,
+	type ReactNode,
+	type SetStateAction,
 } from "react";
-
 import { ThemeProvider } from "next-themes";
 import { NextUIProvider } from "@nextui-org/react";
 
@@ -21,8 +21,6 @@ const GlobalContext = createContext<ContextProps>({
 	setMainMenu: (): boolean => false,
 });
 
-import { ReactNode } from "react";
-
 export const GlobalContextProvider = ({
 	children,
 }: {
@@ -32,7 +30,11 @@ export const GlobalContextProvider = ({
 
 	return (
 		<NextUIProvider>
-			<ThemeProvider attribute="class" defaultTheme="light">
+			<ThemeProvider
+				attribute="class"
+				defaultTheme="light"
+				enableSystem={false}
+			>
 				<GlobalContext.Provider value={{ mainMenu, setMainMenu }}>
 					{children}
 				</GlobalContext.Provider>

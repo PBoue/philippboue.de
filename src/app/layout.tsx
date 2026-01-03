@@ -1,21 +1,16 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import clsx from "clsx";
 import { Montserrat } from "next/font/google";
 import { createClient } from "@/prismicio";
 import { Header, Footer } from "@/components";
-import { GlobalContextProvider } from "./Context/store";
+import { GlobalContextProvider } from "@/context/store";
 
 const montserrat = Montserrat({
 	subsets: ["latin"],
 	variable: "--font-montserrat",
 	display: "swap",
 });
-
-type Props = {
-	params: { id: string };
-	searchParams: { [key: string]: string | string[] | undefined };
-};
 
 export async function generateMetadata(): Promise<Metadata> {
 	const client = createClient();
@@ -62,16 +57,19 @@ export async function generateMetadata(): Promise<Metadata> {
 				url: "/apple-touch-icon.png",
 			},
 		},
+		category: "technology",
+	};
+}
+
+export function generateViewport(): Viewport {
+	return {
+		width: "device-width",
+		initialScale: 1,
+		maximumScale: 1,
 		themeColor: [
 			{ media: "(prefers-color-scheme: light)", color: "white" },
 			{ media: "(prefers-color-scheme: dark)", color: "black" },
 		],
-		viewport: {
-			width: "device-width",
-			initialScale: 1,
-			maximumScale: 1,
-		},
-		category: "technology",
 	};
 }
 

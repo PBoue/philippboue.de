@@ -17,7 +17,7 @@ export type MainStageProps = SliceComponentProps<Content.MainStageSlice>;
 /**
  * Component for "MainStage" Slices.
  */
-const MainStage = ({ slice }: MainStageProps): JSX.Element => {
+const MainStage = ({ slice }: MainStageProps): React.ReactElement => {
 	const ref = useRef(null);
 	const isInView = useInView(ref, { once: true });
 	const mainControls = useAnimation();
@@ -34,10 +34,11 @@ const MainStage = ({ slice }: MainStageProps): JSX.Element => {
 		<Container
 			data-slice-type={slice.slice_type}
 			data-slice-variation={slice.variation}
+			className="lg:min-h-screen"
 		>
 			<div
 				ref={ref}
-				className="container max-w-7xl mx-auto w-full flex justify-between items-center pt-20 md:pt-16 px-0 mt-8"
+				className="container max-w-400 mx-auto w-full flex justify-between items-center pt-20 md:pt-16 px-0 mt-8"
 			>
 				<motion.svg
 					viewBox="0 0 421 376"

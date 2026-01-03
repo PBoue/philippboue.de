@@ -24,7 +24,7 @@ const components: JSXMapSerializer = {
 
 export type ContactFormProps = SliceComponentProps<Content.ContactFormSlice>;
 
-const ContactForm = ({ slice }: ContactFormProps): JSX.Element => {
+const ContactForm = ({ slice }: ContactFormProps): React.ReactElement => {
 	return (
 		<Container
 			data-slice-type={slice.slice_type}
