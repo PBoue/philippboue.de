@@ -94,8 +94,13 @@ pnpm lint             # Run ESLint directly (next lint removed in Next.js 16)
 
 ### Forms & Netlify
 
-- Contact form uses Netlify Forms (see [ContactForm.tsx](src/components/ContactForm.tsx) line 36: `data-netlify="true"`)
-- Form submissions redirect to `/success` page
+Modern Next.js with the OpenNext adapter requires a workaround for Netlify Forms:
+
+1. **Static HTML file** (`public/__forms.html`): Contains hidden form definitions for deploy-time detection
+2. **Client-side submission**: Forms submit via `fetch()` to `/__forms.html` with URL-encoded body
+3. **Form fields must match**: Fields in React component must match those in `__forms.html`
+
+See [ContactForm.tsx](src/components/ContactForm.tsx) and [OpenNext Forms docs](https://opennext.js.org/netlify/forms).
 
 ## Conventions
 

@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Form Detection</title>
+	</head>
+	<body>
+		<!-- 
+      This file enables Netlify Forms detection for Next.js sites.
+      It is never rendered to users - it only exists for deploy-time form detection.
+      See: https://opennext.js.org/netlify/forms
+    -->
+		<form name="contact" data-netlify="true" hidden>
+			<input type="hidden" name="form-name" value="contact" />
+			<input name="first-name" type="text" />
+			<input name="last-name" type="text" />
+			<input name="company" type="text" />
+			<input name="email" type="email" />
+			<input name="phone-number" type="tel" />
+			<textarea name="message"></textarea>
+		</form>
+	</body>
+</html>

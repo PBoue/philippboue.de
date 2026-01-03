@@ -1,0 +1,46 @@
+# Netlify configuration for Next.js
+# https://docs.netlify.com/frameworks/next-js/overview/
+
+[build]
+  command = "pnpm build"
+  publish = ".next"
+
+# Enable skew protection for better deployment stability
+[build.environment]
+  NETLIFY_NEXT_SKEW_PROTECTION = "true"
+
+# Security headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # Prevent XSS attacks
+    X-XSS-Protection = "1; mode=block"
+    # Prevent clickjacking
+    X-Frame-Options = "DENY"
+    # Prevent MIME type sniffing
+    X-Content-Type-Options = "nosniff"
+    # Referrer policy
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    # Permissions policy (limit browser features)
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+# Cache static assets aggressively
+[[headers]]
+  for = "/_next/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Cache images
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Cache fonts
+[[headers]]
+  for = "/*.woff2"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Forms configuration is handled via public/__forms.html
+# See: https://opennext.js.org/netlify/forms

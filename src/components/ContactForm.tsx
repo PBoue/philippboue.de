@@ -1,10 +1,45 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components";
 
+type FormStatus = "idle" | "submitting" | "success" | "error";
+
 export default function Contact() {
-	const [agreed, setAgreed] = useState(false);
+	const [status, setStatus] = useState<FormStatus>("idle");
+	const [errorMessage, setErrorMessage] = useState<string>("");
+	const router = useRouter();
+
+	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+		event.preventDefault();
+		setStatus("submitting");
+		setErrorMessage("");
+
+		const formData = new FormData(event.currentTarget);
+		const urlSearchParams = new URLSearchParams();
+		formData.forEach((value, key) => {
+			urlSearchParams.append(key, value.toString());
+		});
+
+		try {
+			const response = await fetch("/__forms.html", {
+				method: "POST",
+				headers: { "Content-Type": "application/x-www-form-urlencoded" },
+				body: urlSearchParams.toString(),
+			});
+
+			if (response.ok) {
+				setStatus("success");
+				router.push("/success");
+			} else {
+				throw new Error("Form submission failed");
+			}
+		} catch {
+			setStatus("error");
+			setErrorMessage("Something went wrong. Please try again.");
+		}
+	};
 
 	return (
 		<>
@@ -24,120 +59,127 @@ export default function Contact() {
 				<p className="mt-2 text-lg leading-8 text-gray-600 dark:text-white">
 					Looking forward to hearing from you.
 				</p>
+				{status === "error" && (
+					<p className="mt-4 text-sm text-red" role="alert">
+						{errorMessage}
+					</p>
+				)}
 			</div>
 			<form
-				action="/success"
-				method="POST"
 				name="contact"
 				className="mx-auto mt-16 max-w-xl sm:mt-20"
-				data-netlify="true"
+				onSubmit={handleSubmit}
 			>
 				<input type="hidden" name="form-name" value="contact" />
-				<div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
-					<div>
-						<label
-							htmlFor="first-name"
-							className="block text-sm font-semibold leading-6 text-black dark:text-white"
-						>
-							First name
-						</label>
-						<div className="mt-2.5">
+				<fieldset disabled={status === "submitting"}>
+					<div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+						<div>
+							<label
+								htmlFor="first-name"
+								className="block text-sm font-semibold leading-6 text-black dark:text-white"
+							>
+								First name
+							</label>
+							<div className="mt-2.5">
+								<input
+									type="text"
+									name="first-name"
+									id="first-name"
+									autoComplete="given-name"
+									className="block w-full rounded-md border-0 p-5 text-black shadow-sm ring-1 ring-inset ring-black/50 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-cyan sm:text-sm sm:leading-6  dark:bg-white disabled:opacity-50"
+								/>
+							</div>
+						</div>
+						<div>
+							<label
+								htmlFor="last-name"
+								className="block text-sm font-semibold leading-6 text-black dark:text-white"
+							>
+								Last name
+							</label>
+							<div className="mt-2.5">
+								<input
+									type="text"
+									name="last-name"
+									id="last-name"
+									autoComplete="family-name"
+									className="block w-full rounded-md border-0 p-5 text-black shadow-sm ring-1 ring-inset ring-black/50 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-cyan sm:text-sm sm:leading-6 dark:bg-white disabled:opacity-50"
+								/>
+							</div>
+						</div>
+						<div className="sm:col-span-2">
+							<label
+								htmlFor="company"
+								className="block text-sm font-semibold leading-6 text-black dark:text-white"
+							>
+								Company
+							</label>
+							<div className="mt-2.5">
+								<input
+									type="text"
+									name="company"
+									id="company"
+									autoComplete="organization"
+									className="block w-full rounded-md border-0 p-5 text-black shadow-sm ring-1 ring-inset ring-black/50 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-cyan sm:text-sm sm:leading-6 dark:bg-white disabled:opacity-50"
+								/>
+							</div>
+						</div>
+						<div className="sm:col-span-2">
+							<label
+								htmlFor="email"
+								className="block text-sm font-semibold leading-6 text-black dark:text-white"
+							>
+								Email
+							</label>
+							<div className="mt-2.5">
+								<input
+									type="email"
+									name="email"
+									id="email"
+									autoComplete="email"
+									className="block w-full rounded-md border-0 p-5 text-black shadow-sm ring-1 ring-inset ring-black/50 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-cyan sm:text-sm sm:leading-6 dark:bg-white disabled:opacity-50"
+								/>
+							</div>
+						</div>
+						<div className="sm:col-span-2">
+							<label
+								htmlFor="phone-number"
+								className="block text-sm font-semibold leading-6 text-black dark:text-white"
+							>
+								Phone number
+							</label>
 							<input
-								type="text"
-								name="first-name"
-								id="first-name"
-								autoComplete="given-name"
-								className="block w-full rounded-md border-0 p-5 text-black shadow-sm ring-1 ring-inset ring-black/50 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-cyan sm:text-sm sm:leading-6  dark:bg-white"
+								type="tel"
+								name="phone-number"
+								id="phone-number"
+								autoComplete="tel"
+								className="block w-full rounded-md border-0 p-5 text-black shadow-sm ring-1 ring-inset ring-black/50 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-cyan sm:text-sm sm:leading-6 dark:bg-white disabled:opacity-50"
 							/>
 						</div>
-					</div>
-					<div>
-						<label
-							htmlFor="last-name"
-							className="block text-sm font-semibold leading-6 text-black dark:text-white"
-						>
-							Last name
-						</label>
-						<div className="mt-2.5">
-							<input
-								type="text"
-								name="last-name"
-								id="last-name"
-								autoComplete="family-name"
-								className="block w-full rounded-md border-0 p-5 text-black shadow-sm ring-1 ring-inset ring-black/50 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-cyan sm:text-sm sm:leading-6 dark:bg-white"
-							/>
+						<div className="sm:col-span-2">
+							<label
+								htmlFor="message"
+								className="block text-sm font-semibold leading-6 text-black dark:text-white"
+							>
+								Message
+							</label>
+							<div className="mt-2.5">
+								<textarea
+									name="message"
+									id="message"
+									rows={4}
+									className="block w-full rounded-md border-0 p-5 text-black shadow-sm ring-1 ring-inset ring-black/50 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-cyan sm:text-sm sm:leading-6 dark:bg-white disabled:opacity-50"
+									defaultValue={""}
+								/>
+							</div>
 						</div>
 					</div>
-					<div className="sm:col-span-2">
-						<label
-							htmlFor="company"
-							className="block text-sm font-semibold leading-6 text-black dark:text-white"
-						>
-							Company
-						</label>
-						<div className="mt-2.5">
-							<input
-								type="text"
-								name="company"
-								id="company"
-								autoComplete="organization"
-								className="block w-full rounded-md border-0 p-5 text-black shadow-sm ring-1 ring-inset ring-black/50 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-cyan sm:text-sm sm:leading-6 dark:bg-white"
-							/>
-						</div>
+					<div className="mt-10">
+						<Button type="submit" disabled={status === "submitting"}>
+							{status === "submitting" ? "Sending..." : "Let us talk"}
+						</Button>
 					</div>
-					<div className="sm:col-span-2">
-						<label
-							htmlFor="email"
-							className="block text-sm font-semibold leading-6 text-black dark:text-white"
-						>
-							Email
-						</label>
-						<div className="mt-2.5">
-							<input
-								type="email"
-								name="email"
-								id="email"
-								autoComplete="email"
-								className="block w-full rounded-md border-0 p-5 text-black shadow-sm ring-1 ring-inset ring-black/50 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-cyan sm:text-sm sm:leading-6 dark:bg-white"
-							/>
-						</div>
-					</div>
-					<div className="sm:col-span-2">
-						<label
-							htmlFor="phone-number"
-							className="block text-sm font-semibold leading-6 text-black dark:text-white"
-						>
-							Phone number
-						</label>
-						<input
-							type="tel"
-							name="phone-number"
-							id="phone-number"
-							autoComplete="tel"
-							className="block w-full rounded-md border-0 p-5 text-black shadow-sm ring-1 ring-inset ring-black/50 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-cyan sm:text-sm sm:leading-6 dark:bg-white"
-						/>
-					</div>
-					<div className="sm:col-span-2">
-						<label
-							htmlFor="message"
-							className="block text-sm font-semibold leading-6 text-black dark:text-white"
-						>
-							Message
-						</label>
-						<div className="mt-2.5">
-							<textarea
-								name="message"
-								id="message"
-								rows={4}
-								className="block w-full rounded-md border-0 p-5 text-black shadow-sm ring-1 ring-inset ring-black/50 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-cyan sm:text-sm sm:leading-6 dark:bg-white"
-								defaultValue={""}
-							/>
-						</div>
-					</div>
-				</div>
-				<div className="mt-10">
-					<Button type="submit">Let us talk</Button>
-				</div>
+				</fieldset>
 			</form>
 		</>
 	);
