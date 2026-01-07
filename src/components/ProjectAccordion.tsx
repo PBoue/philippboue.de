@@ -5,7 +5,7 @@ import type { Content } from "@prismicio/client";
 import { PrismicRichText, type JSXMapSerializer } from "@prismicio/react";
 import { PrismicNextImage } from "@prismicio/next";
 import { Heading, Paragraph } from "@/components";
-import { Accordion, AccordionItem, Chip, Progress } from "@nextui-org/react";
+import { Accordion, AccordionItem, Chip, Progress } from "@heroui/react";
 
 export interface ProjectAccordionProps {
 	projects: (Content.ProjectDocument | undefined)[];
@@ -30,16 +30,32 @@ export const ProjectAccordion: FC<ProjectAccordionProps> = ({ projects }) => {
 	);
 
 	return (
-		<Accordion>
+		<Accordion
+			className="px-0"
+			itemClasses={{
+				base: "py-0 w-full",
+				title:
+					"font-body font-semibold text-lg text-foreground text-left leading-tight",
+				subtitle:
+					"font-body text-base text-muted-foreground text-left leading-tight",
+				trigger:
+					"px-4 py-4 data-[hover=true]:bg-muted rounded-lg flex items-center gap-4",
+				indicator: "text-foreground transition-transform duration-200",
+				content: "text-sm px-4",
+				startContent: "shrink-0",
+			}}
+		>
 			{validProjects.map((project, i) => (
 				<AccordionItem
 					key={project.id || i}
 					aria-label={project.data.name ?? ""}
 					startContent={
-						<PrismicNextImage
-							field={project.data.companylogo}
-							className="w-12 h-auto mr-6 bg-white p-4 rounded"
-						/>
+						<div className="w-24 h-16 flex items-center justify-center bg-white rounded-lg p-2">
+							<PrismicNextImage
+								field={project.data.companylogo}
+								className="w-full h-full object-contain"
+							/>
+						</div>
 					}
 					title={project.data.company_name}
 					subtitle={project.data.name}

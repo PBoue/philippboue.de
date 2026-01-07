@@ -2,7 +2,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const paragraphVariants = cva(
-	"text-base text-center py-5 leading-[1.4] font-body font-thin",
+	"text-base py-5 leading-[1.4] font-body font-thin",
 	{
 		variants: {
 			variant: {
@@ -14,11 +14,12 @@ const paragraphVariants = cva(
 		defaultVariants: {
 			variant: "default",
 		},
-	}
+	},
 );
 
 export interface ParagraphProps
-	extends React.HTMLAttributes<HTMLParagraphElement>,
+	extends
+		React.HTMLAttributes<HTMLParagraphElement>,
 		VariantProps<typeof paragraphVariants> {
 	children: React.ReactNode;
 }

@@ -3,7 +3,7 @@
 import type { FC } from "react";
 import type { ImageField } from "@prismicio/client";
 import { PrismicNextImage } from "@prismicio/next";
-import { Card, CardBody, CardFooter } from "@nextui-org/react";
+import { Card, CardBody, CardFooter } from "@heroui/react";
 
 export interface ReferenceCardProps {
 	index: number;

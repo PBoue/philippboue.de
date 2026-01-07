@@ -9,7 +9,7 @@ import {
 	type SetStateAction,
 } from "react";
 import { ThemeProvider } from "next-themes";
-import { NextUIProvider } from "@nextui-org/react";
+import { HeroUIProvider } from "@heroui/react";
 
 interface ContextProps {
 	mainMenu: boolean;
@@ -29,7 +29,7 @@ export const GlobalContextProvider = ({
 	const [mainMenu, setMainMenu] = useState(false);
 
 	return (
-		<NextUIProvider>
+		<HeroUIProvider>
 			<ThemeProvider
 				attribute="class"
 				defaultTheme="light"
@@ -39,7 +39,7 @@ export const GlobalContextProvider = ({
 					{children}
 				</GlobalContext.Provider>
 			</ThemeProvider>
-		</NextUIProvider>
+		</HeroUIProvider>
 	);
 };
 
