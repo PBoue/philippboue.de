@@ -17,7 +17,7 @@ export async function generateMetadata(): Promise<Metadata> {
 	const settings = await client.getSingle("settings");
 
 	return {
-		metadataBase: new URL("https://acme.com"),
+		metadataBase: new URL("https://philippboue.de"),
 		alternates: {
 			canonical: "/",
 			languages: {
@@ -83,12 +83,12 @@ export default function RootLayout({
 			<body
 				className={clsx(
 					montserrat.variable,
-					"min-h-screen bg-background text-foreground font-body",
+					"min-h-screen bg-background text-foreground font-body flex flex-col",
 				)}
 			>
 				<GlobalContextProvider>
 					<Header />
-					{children}
+					<main className="flex-1">{children}</main>
 					<Footer />
 				</GlobalContextProvider>
 			</body>

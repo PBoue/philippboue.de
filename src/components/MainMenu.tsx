@@ -1,7 +1,7 @@
 "use client";
 
 import type { FC } from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { createPortal } from "react-dom";
 import type { AnimationSequence } from "framer-motion";
 import { motion, useAnimate, stagger } from "framer-motion";
@@ -12,8 +12,15 @@ import { ThemeToggle } from "./ThemeToggle";
 
 function useMenuAnimation(mainMenu: boolean) {
 	const [scope, animate] = useAnimate();
+	const isFirstRender = useRef(true);
 
 	useEffect(() => {
+		// Skip animation on first render to avoid undefined path errors
+		if (isFirstRender.current) {
+			isFirstRender.current = false;
+			return;
+		}
+
 		const menuAnimations: AnimationSequence = mainMenu
 			? [
 					[
@@ -26,8 +33,14 @@ function useMenuAnimation(mainMenu: boolean) {
 						{ scale: 1, opacity: 1, filter: "blur(0px)" },
 						{ delay: stagger(0.05), at: "-0.1" },
 					],
+					[
+						".theme-toggle",
+						{ opacity: 1, y: 0 },
+						{ duration: 0.3, ease: "easeOut" },
+					],
 				]
 			: [
+					[".theme-toggle", { opacity: 0, y: 10 }, { duration: 0.15, at: "<" }],
 					[
 						"li",
 						{ scale: 0.5, opacity: 0, filter: "blur(10px)" },
@@ -36,20 +49,7 @@ function useMenuAnimation(mainMenu: boolean) {
 					["nav", { x: "100%", opacity: 0 }, { at: "-0.1" }],
 				];
 
-		animate([
-			[
-				"path.top",
-				{ d: mainMenu ? "M 3 16.5 L 17 2.5" : "M 2 2.5 L 20 2.5" },
-				{ at: "<" },
-			],
-			["path.middle", { opacity: mainMenu ? 0 : 1 }, { at: "<" }],
-			[
-				"path.bottom",
-				{ d: mainMenu ? "M 3 2.5 L 17 16.346" : "M 2 16.346 L 20 16.346" },
-				{ at: "<" },
-			],
-			...menuAnimations,
-		]);
+		animate([...menuAnimations]);
 	}, [mainMenu, animate]);
 
 	return scope;
@@ -67,6 +67,18 @@ export const MainMenu: FC<MainMenuProps> = ({ items }) => {
 	useEffect(() => {
 		setMounted(true);
 	}, []);
+
+	// Close menu on Escape key
+	useEffect(() => {
+		const handleEscape = (e: KeyboardEvent) => {
+			if (e.key === "Escape" && mainMenu) {
+				setMainMenu(false);
+			}
+		};
+
+		document.addEventListener("keydown", handleEscape);
+		return () => document.removeEventListener("keydown", handleEscape);
+	}, [mainMenu, setMainMenu]);
 
 	const closeMenu = () => setMainMenu(false);
 
@@ -95,35 +107,32 @@ export const MainMenu: FC<MainMenuProps> = ({ items }) => {
 							fill="transparent"
 							strokeWidth="3"
 							strokeLinecap="round"
-							d="M 2 2.5 L 20 2.5"
 							className="top stroke-black dark:stroke-white"
-							variants={{
-								closed: {
-									d: "M 2 2.5 L 20 2.5",
-								},
-								open: {
-									d: "M 3 16.5 L 17 2.5",
-								},
+							initial={{ d: "M 2 2.5 L 20 2.5" }}
+							animate={{
+								d: mainMenu ? "M 3 16.5 L 17 2.5" : "M 2 2.5 L 20 2.5",
 							}}
+							transition={{ duration: 0.2 }}
 						/>
 						<motion.path
 							fill="transparent"
 							strokeWidth="3"
 							strokeLinecap="round"
 							className="middle stroke-black dark:stroke-white"
-							opacity="1"
+							initial={{ opacity: 1 }}
+							animate={{ opacity: mainMenu ? 0 : 1 }}
 							d="M 2 9.423 L 20 9.423"
 						/>
 						<motion.path
 							fill="transparent"
 							strokeWidth="3"
 							strokeLinecap="round"
-							d="M 2 16.346 L 20 16.346"
 							className="bottom stroke-black dark:stroke-white"
-							variants={{
-								closed: { d: "M 2 16.346 L 20 16.346" },
-								open: { d: "M 3 2.5 L 17 16.346" },
+							initial={{ d: "M 2 16.346 L 20 16.346" }}
+							animate={{
+								d: mainMenu ? "M 3 2.5 L 17 16.346" : "M 2 16.346 L 20 16.346",
 							}}
+							transition={{ duration: 0.2 }}
 						/>
 					</svg>
 				</button>
@@ -143,7 +152,10 @@ export const MainMenu: FC<MainMenuProps> = ({ items }) => {
 							</li>
 						))}
 					</ul>
-					<div className="ml-10 mb-10">
+					<div
+						className="theme-toggle mr-10 mb-10 flex justify-end"
+						style={{ opacity: 0, transform: "translateY(10px)" }}
+					>
 						<ThemeToggle onToggle={closeMenu} />
 					</div>
 				</nav>

@@ -27,26 +27,27 @@ export const Footer = async () => {
 
 					<ul className="mt-8 flex justify-center gap-6 sm:mt-0 lg:justify-end">
 						{social.data.social_plattforms.map(
-							({ label, link, svg_icon_path }, i) => (
-								<li key={i}>
-									<PrismicNextLink
-										field={link}
-										rel="noreferrer"
-										target="_blank"
-										className="text-white/70 transition hover:text-white"
-									>
-										<span className="sr-only">{label}</span>
-										<svg
-											className="h-6 w-6"
-											viewBox="0 0 21 21"
-											fill="currentColor"
-											xmlns="http://www.w3.org/2000/svg"
+							({ label, link, svg_icon_path }, i) =>
+								svg_icon_path ? (
+									<li key={i}>
+										<PrismicNextLink
+											field={link}
+											rel="noopener noreferrer"
+											target="_blank"
+											className="text-white/70 transition hover:text-white"
 										>
-											<path className="fill-white/70" d={svg_icon_path ?? ""} />
-										</svg>
-									</PrismicNextLink>
-								</li>
-							),
+											<span className="sr-only">{label}</span>
+											<svg
+												className="h-6 w-6"
+												viewBox="0 0 21 21"
+												fill="currentColor"
+												xmlns="http://www.w3.org/2000/svg"
+											>
+												<path className="fill-white/70" d={svg_icon_path} />
+											</svg>
+										</PrismicNextLink>
+									</li>
+								) : null,
 						)}
 					</ul>
 				</div>

@@ -28,7 +28,7 @@ const MainStage = ({ slice }: MainStageProps): React.ReactElement => {
 		} else {
 			mainControls.start("hidden");
 		}
-	}, [isInView]);
+	}, [isInView, mainControls]);
 
 	return (
 		<Container
