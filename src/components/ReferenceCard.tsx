@@ -2,8 +2,8 @@
 
 import type { FC } from "react";
 import type { ImageField } from "@prismicio/client";
-import { PrismicNextImage } from "@prismicio/next";
 import { Card, CardBody, CardFooter } from "@heroui/react";
+import { InlineSVG } from "@/components/InlineSVG";
 
 export interface ReferenceCardProps {
 	index: number;
@@ -26,12 +26,12 @@ export const ReferenceCard: FC<ReferenceCardProps> = ({
 			shadow="sm"
 			radius="sm"
 			key={index}
-			className="opacity-50 hover:opacity-100 dark:bg-white dark:text-black"
+			className="opacity-50 hover:opacity-100 dark:bg-card-gradient dark:text-foreground transition-opacity"
 		>
 			<CardBody className="h-[130px] w-full items-center justify-center">
-				<PrismicNextImage
-					field={companylogo}
-					className="max-w-[120px] max-h-[90px]"
+				<InlineSVG
+					url={companylogo?.url}
+					className="max-w-[120px] max-h-[90px] w-full h-full"
 				/>
 			</CardBody>
 			<CardFooter>

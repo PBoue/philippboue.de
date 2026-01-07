@@ -3,8 +3,8 @@
 import type { FC } from "react";
 import type { Content } from "@prismicio/client";
 import { PrismicRichText, type JSXMapSerializer } from "@prismicio/react";
-import { PrismicNextImage } from "@prismicio/next";
 import { Heading, Paragraph } from "@/components";
+import { InlineSVG } from "@/components/InlineSVG";
 import { Accordion, AccordionItem, Chip, Progress } from "@heroui/react";
 
 export interface ProjectAccordionProps {
@@ -31,7 +31,8 @@ export const ProjectAccordion: FC<ProjectAccordionProps> = ({ projects }) => {
 
 	return (
 		<Accordion
-			className="px-0"
+			className="px-0 flex flex-col gap-5"
+			showDivider={false}
 			itemClasses={{
 				base: "py-0 w-full",
 				title:
@@ -50,10 +51,10 @@ export const ProjectAccordion: FC<ProjectAccordionProps> = ({ projects }) => {
 					key={project.id || i}
 					aria-label={project.data.name ?? ""}
 					startContent={
-						<div className="w-24 h-16 flex items-center justify-center bg-white rounded-lg p-2">
-							<PrismicNextImage
-								field={project.data.companylogo}
-								className="w-full h-full object-contain"
+						<div className="w-24 h-16 flex items-center justify-center rounded-lg p-2">
+							<InlineSVG
+								url={project.data.companylogo?.url}
+								className="w-full h-full"
 							/>
 						</div>
 					}
@@ -85,7 +86,7 @@ export const ProjectAccordion: FC<ProjectAccordionProps> = ({ projects }) => {
 										{project.tags.map((tag: string, index: number) => (
 											<Chip
 												key={index}
-												className="bg-cyan mr-2 mb-2 border-none"
+												className="bg-cyan text-black dark:bg-[#fffeff] dark:text-[#111425] border border-cyan dark:border-[#fffeff]/30 mr-2 mb-2"
 											>
 												{tag}
 											</Chip>

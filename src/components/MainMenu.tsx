@@ -1,7 +1,8 @@
 "use client";
 
 import type { FC } from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import type { AnimationSequence } from "framer-motion";
 import { motion, useAnimate, stagger } from "framer-motion";
 import type { Content } from "@prismicio/client";
@@ -61,75 +62,92 @@ export interface MainMenuProps {
 export const MainMenu: FC<MainMenuProps> = ({ items }) => {
 	const { mainMenu, setMainMenu } = useGlobalContext();
 	const scope = useMenuAnimation(mainMenu);
+	const [mounted, setMounted] = useState(false);
+
+	useEffect(() => {
+		setMounted(true);
+	}, []);
+
+	const closeMenu = () => setMainMenu(false);
 
 	return (
-		<div ref={scope}>
-			<button
-				onClick={() => setMainMenu(!mainMenu)}
-				className="relative z-50"
-				aria-label={mainMenu ? "Close menu" : "Open menu"}
-				aria-expanded={mainMenu}
-			>
-				<svg width="23" height="18" viewBox="0 0 23 18">
-					<motion.path
-						fill="transparent"
-						strokeWidth="3"
-						strokeLinecap="round"
-						d="M 2 2.5 L 20 2.5"
-						className="top stroke-black dark:stroke-white"
-						variants={{
-							closed: {
-								d: "M 2 2.5 L 20 2.5",
-							},
-							open: {
-								d: "M 3 16.5 L 17 2.5",
-							},
-						}}
-					/>
-					<motion.path
-						fill="transparent"
-						strokeWidth="3"
-						strokeLinecap="round"
-						className="middle stroke-black dark:stroke-white"
-						opacity="1"
-						d="M 2 9.423 L 20 9.423"
-					/>
-					<motion.path
-						fill="transparent"
-						strokeWidth="3"
-						strokeLinecap="round"
-						d="M 2 16.346 L 20 16.346"
-						className="bottom stroke-black dark:stroke-white"
-						variants={{
-							closed: { d: "M 2 16.346 L 20 16.346" },
-							open: { d: "M 3 2.5 L 17 16.346" },
-						}}
-					/>
-				</svg>
-			</button>
-			<nav
-				className="grid grid-flow-row content-between fixed top-0 right-0 bottom-0 w-3/4 md:w-2/4 h-screen z-40 bg-cyan/90 pt-10 will-change-transform"
-				style={{ transform: "translateX(100%)", opacity: 0 }}
-			>
-				<ul className="flex flex-col gap-5 p-5 list-none m-0">
-					{items.map((item, i) => (
-						<li
-							key={i}
-							className="block text-black font-bold text-3xl p-5 will-change-transform"
-						>
-							<PrismicNextLink
-								field={item.link}
-								onClick={() => setMainMenu(!mainMenu)}
+		<>
+			{/* Overlay for click-outside to close - rendered via portal to escape header stacking context */}
+			{mounted &&
+				mainMenu &&
+				createPortal(
+					<div
+						className="fixed inset-0 z-40 bg-black/20"
+						onClick={closeMenu}
+						aria-hidden="true"
+					/>,
+					document.body,
+				)}
+			<div ref={scope}>
+				<button
+					onClick={() => setMainMenu(!mainMenu)}
+					className="relative z-50"
+					aria-label={mainMenu ? "Close menu" : "Open menu"}
+					aria-expanded={mainMenu}
+				>
+					<svg width="23" height="18" viewBox="0 0 23 18">
+						<motion.path
+							fill="transparent"
+							strokeWidth="3"
+							strokeLinecap="round"
+							d="M 2 2.5 L 20 2.5"
+							className="top stroke-black dark:stroke-white"
+							variants={{
+								closed: {
+									d: "M 2 2.5 L 20 2.5",
+								},
+								open: {
+									d: "M 3 16.5 L 17 2.5",
+								},
+							}}
+						/>
+						<motion.path
+							fill="transparent"
+							strokeWidth="3"
+							strokeLinecap="round"
+							className="middle stroke-black dark:stroke-white"
+							opacity="1"
+							d="M 2 9.423 L 20 9.423"
+						/>
+						<motion.path
+							fill="transparent"
+							strokeWidth="3"
+							strokeLinecap="round"
+							d="M 2 16.346 L 20 16.346"
+							className="bottom stroke-black dark:stroke-white"
+							variants={{
+								closed: { d: "M 2 16.346 L 20 16.346" },
+								open: { d: "M 3 2.5 L 17 16.346" },
+							}}
+						/>
+					</svg>
+				</button>
+				<nav
+					className="grid grid-flow-row content-between fixed top-0 right-0 bottom-0 w-3/4 md:w-2/4 h-screen z-40 bg-cyan/95 dark:bg-[#141728]/95 backdrop-blur-md pt-10 will-change-transform"
+					style={{ transform: "translateX(100%)", opacity: 0 }}
+				>
+					<ul className="flex flex-col gap-5 p-5 list-none m-0">
+						{items.map((item, i) => (
+							<li
+								key={i}
+								className="block text-black dark:text-foreground font-bold text-3xl p-5 will-change-transform"
 							>
-								{item.label}
-							</PrismicNextLink>
-						</li>
-					))}
-				</ul>
-				<div className="ml-10 mb-10">
-					<ThemeToggle />
-				</div>
-			</nav>
-		</div>
+								<PrismicNextLink field={item.link} onClick={closeMenu}>
+									{item.label}
+								</PrismicNextLink>
+							</li>
+						))}
+					</ul>
+					<div className="ml-10 mb-10">
+						<ThemeToggle onToggle={closeMenu} />
+					</div>
+				</nav>
+			</div>
+		</>
 	);
 };

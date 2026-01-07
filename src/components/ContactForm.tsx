@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Button } from "@/components";
 
 type FormStatus = "idle" | "submitting" | "success" | "error";
 
@@ -76,7 +75,7 @@ export default function Contact() {
 						<div>
 							<label
 								htmlFor="first-name"
-								className="block text-sm font-semibold leading-6 text-black dark:text-white"
+								className="block text-left text-sm font-semibold leading-6 text-black dark:text-white"
 							>
 								First name
 							</label>
@@ -86,14 +85,14 @@ export default function Contact() {
 									name="first-name"
 									id="first-name"
 									autoComplete="given-name"
-									className="block w-full rounded-md border-0 p-5 text-black shadow-sm ring-1 ring-inset ring-black/50 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-cyan sm:text-sm sm:leading-6  dark:bg-white disabled:opacity-50"
+									className="input-3d input-3d-lg"
 								/>
 							</div>
 						</div>
 						<div>
 							<label
 								htmlFor="last-name"
-								className="block text-sm font-semibold leading-6 text-black dark:text-white"
+								className="block text-left text-sm font-semibold leading-6 text-black dark:text-white"
 							>
 								Last name
 							</label>
@@ -103,14 +102,14 @@ export default function Contact() {
 									name="last-name"
 									id="last-name"
 									autoComplete="family-name"
-									className="block w-full rounded-md border-0 p-5 text-black shadow-sm ring-1 ring-inset ring-black/50 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-cyan sm:text-sm sm:leading-6 dark:bg-white disabled:opacity-50"
+									className="input-3d input-3d-lg"
 								/>
 							</div>
 						</div>
 						<div className="sm:col-span-2">
 							<label
 								htmlFor="company"
-								className="block text-sm font-semibold leading-6 text-black dark:text-white"
+								className="block text-left text-sm font-semibold leading-6 text-black dark:text-white"
 							>
 								Company
 							</label>
@@ -120,14 +119,14 @@ export default function Contact() {
 									name="company"
 									id="company"
 									autoComplete="organization"
-									className="block w-full rounded-md border-0 p-5 text-black shadow-sm ring-1 ring-inset ring-black/50 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-cyan sm:text-sm sm:leading-6 dark:bg-white disabled:opacity-50"
+									className="input-3d input-3d-lg"
 								/>
 							</div>
 						</div>
 						<div className="sm:col-span-2">
 							<label
 								htmlFor="email"
-								className="block text-sm font-semibold leading-6 text-black dark:text-white"
+								className="block text-left text-sm font-semibold leading-6 text-black dark:text-white"
 							>
 								Email
 							</label>
@@ -137,14 +136,14 @@ export default function Contact() {
 									name="email"
 									id="email"
 									autoComplete="email"
-									className="block w-full rounded-md border-0 p-5 text-black shadow-sm ring-1 ring-inset ring-black/50 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-cyan sm:text-sm sm:leading-6 dark:bg-white disabled:opacity-50"
+									className="input-3d input-3d-lg"
 								/>
 							</div>
 						</div>
 						<div className="sm:col-span-2">
 							<label
 								htmlFor="phone-number"
-								className="block text-sm font-semibold leading-6 text-black dark:text-white"
+								className="block text-left text-sm font-semibold leading-6 text-black dark:text-white"
 							>
 								Phone number
 							</label>
@@ -153,13 +152,13 @@ export default function Contact() {
 								name="phone-number"
 								id="phone-number"
 								autoComplete="tel"
-								className="block w-full rounded-md border-0 p-5 text-black shadow-sm ring-1 ring-inset ring-black/50 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-cyan sm:text-sm sm:leading-6 dark:bg-white disabled:opacity-50"
+								className="input-3d input-3d-lg"
 							/>
 						</div>
 						<div className="sm:col-span-2">
 							<label
 								htmlFor="message"
-								className="block text-sm font-semibold leading-6 text-black dark:text-white"
+								className="block text-left text-sm font-semibold leading-6 text-black dark:text-white"
 							>
 								Message
 							</label>
@@ -168,16 +167,20 @@ export default function Contact() {
 									name="message"
 									id="message"
 									rows={4}
-									className="block w-full rounded-md border-0 p-5 text-black shadow-sm ring-1 ring-inset ring-black/50 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-cyan sm:text-sm sm:leading-6 dark:bg-white disabled:opacity-50"
+									className="input-3d input-3d-lg textarea-3d"
 									defaultValue={""}
 								/>
 							</div>
 						</div>
 					</div>
-					<div className="mt-10">
-						<Button type="submit" disabled={status === "submitting"}>
+					<div className="mt-10 flex justify-center">
+						<button
+							type="submit"
+							disabled={status === "submitting"}
+							className="btn-glow btn-glow-cyan disabled:opacity-50 disabled:cursor-not-allowed"
+						>
 							{status === "submitting" ? "Sending..." : "Let us talk"}
-						</Button>
+						</button>
 					</div>
 				</fieldset>
 			</form>

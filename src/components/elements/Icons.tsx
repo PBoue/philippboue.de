@@ -8,7 +8,7 @@ export function CodeIcon() {
 			className="scale-[2]"
 		>
 			<path
-				stroke="#000"
+				stroke="currentColor"
 				strokeLinecap="round"
 				strokeLinejoin="round"
 				strokeWidth="2"
@@ -28,7 +28,7 @@ export function EditIcon() {
 			className="scale-[2]"
 		>
 			<g
-				stroke="#000"
+				stroke="currentColor"
 				strokeLinecap="round"
 				strokeLinejoin="round"
 				strokeWidth="2"
@@ -44,7 +44,7 @@ export function MailIcon() {
 	return (
 		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none">
 			<path
-				stroke="#000"
+				stroke="currentColor"
 				strokeLinecap="round"
 				strokeLinejoin="round"
 				strokeWidth="2"
@@ -64,7 +64,7 @@ export function TargetIcon() {
 			className="scale-[2]"
 		>
 			<g
-				stroke="#000"
+				stroke="currentColor"
 				strokeLinecap="round"
 				strokeLinejoin="round"
 				strokeWidth="2"

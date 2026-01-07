@@ -21,12 +21,17 @@ const components: JSXMapSerializer = {
 		</Heading>
 	),
 	heading3: ({ children }) => (
-		<Heading as="h3" variant="md" color="black">
+		<Heading
+			as="h3"
+			variant="md"
+			color="black"
+			className="dark:text-foreground"
+		>
 			{children}
 		</Heading>
 	),
 	paragraph: ({ children }) => (
-		<Paragraph color="black" className="dark:text-black">
+		<Paragraph color="black" className="dark:text-foreground">
 			{children}
 		</Paragraph>
 	),
@@ -51,7 +56,7 @@ const Services = ({ slice }: ServicesProps): React.ReactElement => {
 				{slice.items.map((item, index) => (
 					<article
 						key={index}
-						className="rounded-md bg-cyan dark:bg-white dark:text-black px-10 pt-10 shadow-sm transition hover:shadow-lg"
+						className="rounded-md bg-cyan dark:bg-card-gradient dark:text-foreground px-10 pt-10 shadow-sm transition hover:shadow-lg"
 					>
 						<div className="flex justify-center">
 							{item.icon && <>{icons[item.icon]}</>}

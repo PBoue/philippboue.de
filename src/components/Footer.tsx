@@ -7,7 +7,7 @@ export const Footer = async () => {
 	const social = await client.getSingle("social");
 
 	return (
-		<footer className="bg-black border-t border-cyan relative z-40">
+		<footer className="bg-[#0a0c14] relative z-40">
 			<div className="container max-w-400 mx-auto py-10 px-4">
 				<div className="flex flex-col-reverse md:flex-row gap-10 items-center justify-between">
 					<ul className="flex flex-wrap justify-center gap-4 text-xs lg:justify-end">
@@ -15,7 +15,7 @@ export const Footer = async () => {
 							<li key={i}>
 								<PrismicNextLink
 									field={link}
-									className="text-white transition hover:opacity-75"
+									className="text-white/70 transition hover:text-white"
 								>
 									{label}
 								</PrismicNextLink>
@@ -23,7 +23,7 @@ export const Footer = async () => {
 						))}
 					</ul>
 
-					<p className="text-white"> © PBO {new Date().getFullYear()}</p>
+					<p className="text-foreground"> © PBO {new Date().getFullYear()}</p>
 
 					<ul className="mt-8 flex justify-center gap-6 sm:mt-0 lg:justify-end">
 						{social.data.social_plattforms.map(
@@ -33,7 +33,7 @@ export const Footer = async () => {
 										field={link}
 										rel="noreferrer"
 										target="_blank"
-										className="text-white transition hover:opacity-75"
+										className="text-white/70 transition hover:text-white"
 									>
 										<span className="sr-only">{label}</span>
 										<svg
@@ -42,7 +42,7 @@ export const Footer = async () => {
 											fill="currentColor"
 											xmlns="http://www.w3.org/2000/svg"
 										>
-											<path className="fill-white" d={svg_icon_path ?? ""} />
+											<path className="fill-white/70" d={svg_icon_path ?? ""} />
 										</svg>
 									</PrismicNextLink>
 								</li>

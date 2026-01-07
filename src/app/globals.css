@@ -36,6 +36,14 @@
 	--color-ring: #3bf6eb;
 	--color-accent: #3bf6eb;
 	--color-accent-foreground: #0d1f2d;
+	--color-card: #ffffff;
+	--color-card-foreground: #0d1f2d;
+	--color-border: #0d1f2d;
+
+	/* Dark mode specific colors */
+	--color-dark-bg: #111425;
+	--color-dark-card: #20263e;
+	--color-dark-text: #fffeff;
 
 	/* Typography */
 	--font-body: var(--font-montserrat);
@@ -47,16 +55,19 @@
 /* Dark mode semantic token overrides */
 .dark {
 	color-scheme: dark;
-	--color-background: #0d1f2d;
-	--color-foreground: #ffffff;
-	--color-muted: #1e293b;
-	--color-muted-foreground: #94a3b8;
-	--color-popover: #0d1f2d;
-	--color-popover-foreground: #ffffff;
-	--color-input: #ffffff;
+	--color-background: #111425;
+	--color-foreground: #fffeff;
+	--color-muted: #20263e;
+	--color-muted-foreground: #fffeff;
+	--color-popover: #20263e;
+	--color-popover-foreground: #fffeff;
+	--color-input: #fffeff;
 	--color-ring: #3bf6eb;
 	--color-accent: #3bf6eb;
-	--color-accent-foreground: #0d1f2d;
+	--color-accent-foreground: #111425;
+	--color-card: #20263e;
+	--color-card-foreground: #fffeff;
+	--color-border: #fffeff;
 }
 
 /* Animation utilities from tailwindcss-animate (manual port) */
@@ -181,4 +192,806 @@
 [data-open="true"] > [data-slot="trigger"] [data-slot="indicator"],
 [aria-expanded="true"] [data-slot="indicator"] {
 	transform: rotate(90deg);
+}
+
+/* Dark mode card gradient utility */
+@utility bg-card-gradient {
+	background: linear-gradient(
+		to bottom,
+		var(--color-dark-card),
+		var(--color-dark-bg)
+	);
+}
+
+/* Apply gradient to bordered elements in dark mode */
+.dark [data-slot="base"],
+.dark .card-gradient {
+	background: linear-gradient(to bottom, #20263e, #111425);
+}
+
+/* ============================================
+   Neumorphic Shadow Utilities (Dark Mode)
+   Based on background #111425
+   Light: #1a1f3a | Dark: #080a14
+   ============================================ */
+
+/* Raised/convex effect - element appears to float above surface */
+@utility shadow-neu {
+	box-shadow:
+		8px 8px 16px #080a14,
+		-8px -8px 16px #1a1f3a;
+}
+
+@utility shadow-neu-sm {
+	box-shadow:
+		4px 4px 8px #080a14,
+		-4px -4px 8px #1a1f3a;
+}
+
+@utility shadow-neu-lg {
+	box-shadow:
+		12px 12px 24px #080a14,
+		-12px -12px 24px #1a1f3a;
+}
+
+@utility shadow-neu-xl {
+	box-shadow:
+		20px 20px 40px #080a14,
+		-20px -20px 40px #1a1f3a;
+}
+
+/* Pressed/concave effect - element appears pressed into surface */
+@utility shadow-neu-inset {
+	box-shadow:
+		inset 4px 4px 8px #080a14,
+		inset -4px -4px 8px #1a1f3a;
+}
+
+@utility shadow-neu-inset-sm {
+	box-shadow:
+		inset 2px 2px 4px #080a14,
+		inset -2px -2px 4px #1a1f3a;
+}
+
+@utility shadow-neu-inset-lg {
+	box-shadow:
+		inset 8px 8px 16px #080a14,
+		inset -8px -8px 16px #1a1f3a;
+}
+
+/* Flat with border glow - subtle raised effect */
+@utility shadow-neu-flat {
+	box-shadow:
+		4px 4px 10px #080a14,
+		-2px -2px 8px #1a1f3a;
+}
+
+/* Combined: raised with inset highlight */
+@utility shadow-neu-highlight {
+	box-shadow:
+		6px 6px 12px #080a14,
+		-6px -6px 12px #1a1f3a,
+		inset 1px 1px 2px #1a1f3a;
+}
+
+/* Active/pressed state for buttons */
+@utility shadow-neu-pressed {
+	box-shadow:
+		inset 3px 3px 6px #080a14,
+		inset -3px -3px 6px #1a1f3a;
+}
+
+/* Circular elements (like dials, avatars) */
+@utility shadow-neu-circle {
+	box-shadow:
+		10px 10px 20px #080a14,
+		-10px -10px 20px #1a1f3a;
+}
+
+@utility shadow-neu-circle-inset {
+	box-shadow:
+		inset 6px 6px 12px #080a14,
+		inset -6px -6px 12px #1a1f3a;
+}
+
+/* Hover state - more pronounced shadow */
+@utility hover-shadow-neu-lg {
+	&:hover {
+		box-shadow:
+			12px 12px 24px #080a14,
+			-12px -12px 24px #1a1f3a;
+	}
+}
+
+/* Transition for smooth shadow changes */
+@utility transition-shadow-neu {
+	transition: box-shadow 0.2s ease-in-out;
+}
+
+/* ============================================
+   3D Raised/Floating Effects (Neumorphic)
+   Elements appear to lift organically from
+   the background surface
+   
+   Key technique:
+   - Top-left: light glow/highlight
+   - Bottom-right: dark drop shadow
+   - Thin border for edge definition
+   - Same background as surface
+   ============================================ */
+
+/* Raised surface - for tracks, containers */
+.raised-surface {
+	background: #e8ecf0;
+	border: 1px solid rgba(255, 255, 255, 0.5);
+	box-shadow:
+		-4px -4px 10px rgba(255, 255, 255, 0.8),
+		4px 4px 10px rgba(0, 0, 0, 0.15),
+		inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.dark .raised-surface {
+	background: #1a1f30;
+	border: 1px solid rgba(60, 70, 100, 0.3);
+	box-shadow:
+		-4px -4px 12px rgba(50, 60, 90, 0.25),
+		4px 4px 12px rgba(0, 0, 0, 0.5),
+		inset 0 0 0 1px rgba(60, 75, 100, 0.15);
+}
+
+/* Raised surface small variant */
+.raised-surface-sm {
+	background: #e8ecf0;
+	border: 1px solid rgba(255, 255, 255, 0.5);
+	box-shadow:
+		-2px -2px 6px rgba(255, 255, 255, 0.7),
+		2px 2px 6px rgba(0, 0, 0, 0.12),
+		inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.dark .raised-surface-sm {
+	background: #1a1f30;
+	border: 1px solid rgba(60, 70, 100, 0.3);
+	box-shadow:
+		-2px -2px 8px rgba(50, 60, 90, 0.2),
+		2px 2px 8px rgba(0, 0, 0, 0.4),
+		inset 0 0 0 1px rgba(60, 75, 100, 0.15);
+}
+
+/* Recessed/sunken surface - for input fields, tracks */
+.recessed-surface {
+	background: #dde2e8;
+	border: 1px solid rgba(0, 0, 0, 0.08);
+	box-shadow:
+		inset 3px 3px 8px rgba(0, 0, 0, 0.12),
+		inset -2px -2px 6px rgba(255, 255, 255, 0.8),
+		-2px -2px 6px rgba(255, 255, 255, 0.5),
+		2px 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.dark .recessed-surface {
+	background: #0d1220;
+	border: 1px solid rgba(40, 50, 75, 0.5);
+	box-shadow:
+		inset 4px 4px 12px rgba(0, 0, 0, 0.6),
+		inset -3px -3px 10px rgba(45, 55, 85, 0.3),
+		-3px -3px 8px rgba(50, 60, 95, 0.15),
+		3px 3px 10px rgba(0, 0, 0, 0.4);
+}
+
+/* ============================================
+   3D Input Fields
+   Recessed inputs with raised 3D frame effect
+   ============================================ */
+
+/* Base input styles */
+.input-3d {
+	display: block;
+	width: 100%;
+	padding: 0.75rem 1rem;
+	border-radius: 0.5rem;
+	font-size: 0.875rem;
+	line-height: 1.5;
+	transition: all 0.2s ease;
+	outline: none;
+}
+
+/* Light mode input - raised frame with recessed inner */
+.input-3d {
+	background: #ffffff;
+	color: #111425;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	box-shadow:
+		-3px -3px 8px rgba(255, 255, 255, 0.9),
+		3px 3px 8px rgba(0, 0, 0, 0.1),
+		inset 2px 2px 4px rgba(0, 0, 0, 0.05),
+		inset -1px -1px 3px rgba(255, 255, 255, 0.8);
+}
+
+.input-3d::placeholder {
+	color: #9ca3af;
+}
+
+.input-3d:focus {
+	border-color: #3bf6eb;
+	box-shadow:
+		-3px -3px 8px rgba(255, 255, 255, 0.9),
+		3px 3px 8px rgba(0, 0, 0, 0.1),
+		inset 2px 2px 4px rgba(0, 0, 0, 0.05),
+		inset -1px -1px 3px rgba(255, 255, 255, 0.8),
+		0 0 0 2px rgba(59, 246, 235, 0.3);
+}
+
+.input-3d.input-error,
+.input-3d:invalid:not(:placeholder-shown) {
+	border-color: #a30015;
+	box-shadow:
+		-3px -3px 8px rgba(255, 255, 255, 0.9),
+		3px 3px 8px rgba(0, 0, 0, 0.1),
+		inset 2px 2px 4px rgba(0, 0, 0, 0.05),
+		inset -1px -1px 3px rgba(255, 255, 255, 0.8),
+		0 0 0 2px rgba(163, 0, 21, 0.2);
+}
+
+.input-3d:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
+/* Dark mode input - raised 3D frame effect */
+.dark .input-3d {
+	background: #0d1220;
+	color: #fffeff;
+	border: 1px solid rgba(50, 60, 90, 0.4);
+	box-shadow:
+		-4px -4px 10px rgba(50, 60, 95, 0.2),
+		4px 4px 12px rgba(0, 0, 0, 0.5),
+		inset 2px 2px 6px rgba(0, 0, 0, 0.3),
+		inset -2px -2px 4px rgba(45, 55, 85, 0.2);
+}
+
+.dark .input-3d::placeholder {
+	color: #6b7280;
+}
+
+.dark .input-3d:focus {
+	border-color: #3bf6eb;
+	box-shadow:
+		-4px -4px 10px rgba(50, 60, 95, 0.2),
+		4px 4px 12px rgba(0, 0, 0, 0.5),
+		inset 2px 2px 6px rgba(0, 0, 0, 0.3),
+		inset -2px -2px 4px rgba(45, 55, 85, 0.2),
+		0 0 0 2px rgba(59, 246, 235, 0.3);
+}
+
+.dark .input-3d.input-error,
+.dark .input-3d:invalid:not(:placeholder-shown) {
+	border-color: #ff4d6a;
+	box-shadow:
+		-4px -4px 10px rgba(50, 60, 95, 0.2),
+		4px 4px 12px rgba(0, 0, 0, 0.5),
+		inset 2px 2px 6px rgba(0, 0, 0, 0.3),
+		inset -2px -2px 4px rgba(45, 55, 85, 0.2),
+		0 0 0 2px rgba(255, 77, 106, 0.25);
+}
+
+/* Textarea variant */
+.textarea-3d {
+	min-height: 120px;
+	resize: vertical;
+}
+
+/* Input sizes */
+.input-3d-sm {
+	padding: 0.5rem 0.75rem;
+	font-size: 0.75rem;
+}
+
+.input-3d-lg {
+	padding: 1rem 1.25rem;
+	font-size: 1rem;
+}
+
+/* ============================================
+   3D Glowing/Raised Interactive Elements
+   For buttons, toggles, thumbs - elements that
+   appear raised with organic lift from surface
+   
+   Key: top-left highlight + bottom-right shadow
+   + thin border + optional glow for active state
+   ============================================ */
+
+/* Cyan glowing element (active state) - light mode */
+.glow-cyan {
+	background: radial-gradient(
+		circle at 35% 35%,
+		#6ffaf2 0%,
+		#3bf6eb 40%,
+		#28d4c8 100%
+	);
+	border: 1px solid rgba(59, 246, 235, 0.6);
+	box-shadow:
+		-3px -3px 8px rgba(255, 255, 255, 0.6),
+		3px 3px 8px rgba(0, 0, 0, 0.2),
+		0 0 12px 2px rgba(59, 246, 235, 0.4),
+		inset 1px 1px 2px rgba(255, 255, 255, 0.4);
+}
+
+/* Cyan glowing element (active state) - dark mode */
+.dark .glow-cyan {
+	background: radial-gradient(
+		circle at 35% 35%,
+		#6ffaf2 0%,
+		#3bf6eb 40%,
+		#28d4c8 100%
+	);
+	border: 1px solid rgba(59, 246, 235, 0.5);
+	box-shadow:
+		-4px -4px 10px rgba(50, 60, 95, 0.3),
+		4px 4px 12px rgba(0, 0, 0, 0.5),
+		0 0 15px 3px rgba(59, 246, 235, 0.35),
+		inset 1px 1px 2px rgba(255, 255, 255, 0.25);
+}
+
+/* Magenta glowing element */
+.glow-magenta {
+	background: radial-gradient(
+		circle at 35% 35%,
+		#ff6fdc 0%,
+		#f63bcd 40%,
+		#d428b0 100%
+	);
+	border: 1px solid rgba(246, 59, 205, 0.6);
+	box-shadow:
+		-3px -3px 8px rgba(255, 255, 255, 0.6),
+		3px 3px 8px rgba(0, 0, 0, 0.2),
+		0 0 12px 2px rgba(246, 59, 205, 0.4),
+		inset 1px 1px 2px rgba(255, 255, 255, 0.4);
+}
+
+.dark .glow-magenta {
+	background: radial-gradient(
+		circle at 35% 35%,
+		#ff6fdc 0%,
+		#f63bcd 40%,
+		#d428b0 100%
+	);
+	border: 1px solid rgba(246, 59, 205, 0.5);
+	box-shadow:
+		-4px -4px 10px rgba(50, 60, 95, 0.3),
+		4px 4px 12px rgba(0, 0, 0, 0.5),
+		0 0 15px 3px rgba(246, 59, 205, 0.35),
+		inset 1px 1px 2px rgba(255, 255, 255, 0.25);
+}
+
+/* Blue glowing element */
+.glow-blue {
+	background: radial-gradient(
+		circle at 35% 35%,
+		#6fd0fa 0%,
+		#3bbff6 40%,
+		#28a8d4 100%
+	);
+	border: 1px solid rgba(59, 191, 246, 0.6);
+	box-shadow:
+		-3px -3px 8px rgba(255, 255, 255, 0.6),
+		3px 3px 8px rgba(0, 0, 0, 0.2),
+		0 0 12px 2px rgba(59, 191, 246, 0.4),
+		inset 1px 1px 2px rgba(255, 255, 255, 0.4);
+}
+
+.dark .glow-blue {
+	background: radial-gradient(
+		circle at 35% 35%,
+		#6fd0fa 0%,
+		#3bbff6 40%,
+		#28a8d4 100%
+	);
+	border: 1px solid rgba(59, 191, 246, 0.5);
+	box-shadow:
+		-4px -4px 10px rgba(50, 60, 95, 0.3),
+		4px 4px 12px rgba(0, 0, 0, 0.5),
+		0 0 15px 3px rgba(59, 191, 246, 0.35),
+		inset 1px 1px 2px rgba(255, 255, 255, 0.25);
+}
+
+/* White/neutral glowing element (for light-on-dark) */
+.glow-white {
+	background: radial-gradient(
+		circle at 35% 35%,
+		#ffffff 0%,
+		#f0f2f5 40%,
+		#e0e4e8 100%
+	);
+	border: 1px solid rgba(255, 255, 255, 0.5);
+	box-shadow:
+		-3px -3px 8px rgba(255, 255, 255, 0.7),
+		3px 3px 8px rgba(0, 0, 0, 0.15),
+		0 0 8px 1px rgba(255, 255, 255, 0.3),
+		inset 1px 1px 2px rgba(255, 255, 255, 0.5);
+	border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.dark .glow-white {
+	background: radial-gradient(
+		circle at 35% 35%,
+		#ffffff 0%,
+		#f0f2f5 40%,
+		#e0e4e8 100%
+	);
+	border: 1px solid rgba(255, 255, 255, 0.3);
+	box-shadow:
+		-4px -4px 10px rgba(50, 60, 95, 0.3),
+		4px 4px 12px rgba(0, 0, 0, 0.5),
+		0 0 10px 2px rgba(255, 255, 255, 0.15),
+		inset 1px 1px 2px rgba(255, 255, 255, 0.4);
+}
+
+/* Glow intensity variants */
+.glow-intense {
+	--glow-spread: 12px;
+	--glow-opacity: 0.6;
+}
+
+.glow-subtle {
+	--glow-spread: 4px;
+	--glow-opacity: 0.3;
+}
+
+/* ============================================
+   3D Raised Buttons
+   Buttons that organically lift from surface
+   with proper hover and active states
+   ============================================ */
+
+/* Base button styles */
+.btn-glow {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0.75rem 1.5rem;
+	border-radius: 9999px;
+	font-weight: 600;
+	cursor: pointer;
+	transition: all 0.15s ease;
+	color: #111425;
+}
+
+/* Cyan button - Light mode */
+.btn-glow-cyan {
+	background: radial-gradient(
+		circle at 35% 35%,
+		#6ffaf2 0%,
+		#3bf6eb 40%,
+		#28d4c8 100%
+	);
+	border: 1px solid rgba(59, 246, 235, 0.6);
+	box-shadow:
+		-3px -3px 8px rgba(255, 255, 255, 0.7),
+		3px 3px 8px rgba(0, 0, 0, 0.15),
+		0 0 10px 2px rgba(59, 246, 235, 0.3),
+		inset 1px 1px 2px rgba(255, 255, 255, 0.4);
+	color: #111425;
+}
+
+.btn-glow-cyan:hover {
+	box-shadow:
+		-4px -4px 10px rgba(255, 255, 255, 0.8),
+		4px 4px 10px rgba(0, 0, 0, 0.18),
+		0 0 16px 4px rgba(59, 246, 235, 0.4),
+		inset 1px 1px 2px rgba(255, 255, 255, 0.5);
+	transform: translateY(-1px);
+}
+
+.btn-glow-cyan:active {
+	background: radial-gradient(
+		circle at 50% 50%,
+		#3bf6eb 0%,
+		#28d4c8 50%,
+		#20c0b8 100%
+	);
+	box-shadow:
+		-1px -1px 4px rgba(255, 255, 255, 0.5),
+		1px 1px 4px rgba(0, 0, 0, 0.1),
+		0 0 6px 1px rgba(59, 246, 235, 0.3),
+		inset 2px 2px 4px rgba(0, 0, 0, 0.15);
+	transform: translateY(1px);
+}
+
+/* Cyan button - Dark mode */
+.dark .btn-glow-cyan {
+	background: radial-gradient(
+		circle at 35% 35%,
+		#6ffaf2 0%,
+		#3bf6eb 40%,
+		#28d4c8 100%
+	);
+	border: 1px solid rgba(59, 246, 235, 0.5);
+	box-shadow:
+		-4px -4px 10px rgba(50, 60, 95, 0.3),
+		4px 4px 12px rgba(0, 0, 0, 0.5),
+		0 0 12px 3px rgba(59, 246, 235, 0.3),
+		inset 1px 1px 2px rgba(255, 255, 255, 0.25);
+	color: #111425;
+}
+
+.dark .btn-glow-cyan:hover {
+	box-shadow:
+		-5px -5px 12px rgba(50, 60, 95, 0.35),
+		5px 5px 14px rgba(0, 0, 0, 0.55),
+		0 0 18px 5px rgba(59, 246, 235, 0.4),
+		inset 1px 1px 2px rgba(255, 255, 255, 0.3);
+	transform: translateY(-1px);
+}
+
+.dark .btn-glow-cyan:active {
+	background: radial-gradient(
+		circle at 50% 50%,
+		#3bf6eb 0%,
+		#28d4c8 50%,
+		#20c0b8 100%
+	);
+	box-shadow:
+		-2px -2px 6px rgba(50, 60, 95, 0.2),
+		2px 2px 6px rgba(0, 0, 0, 0.4),
+		0 0 8px 2px rgba(59, 246, 235, 0.25),
+		inset 3px 3px 6px rgba(0, 0, 0, 0.25);
+	transform: translateY(1px);
+}
+
+/* Magenta button - Light mode */
+.btn-glow-magenta {
+	background: radial-gradient(
+		circle at 35% 35%,
+		#ff6fdc 0%,
+		#f63bcd 40%,
+		#d428b0 100%
+	);
+	border: 1px solid rgba(246, 59, 205, 0.6);
+	box-shadow:
+		-3px -3px 8px rgba(255, 255, 255, 0.7),
+		3px 3px 8px rgba(0, 0, 0, 0.15),
+		0 0 10px 2px rgba(246, 59, 205, 0.3),
+		inset 1px 1px 2px rgba(255, 255, 255, 0.4);
+	color: #ffffff;
+}
+
+.btn-glow-magenta:hover {
+	box-shadow:
+		-4px -4px 10px rgba(255, 255, 255, 0.8),
+		4px 4px 10px rgba(0, 0, 0, 0.18),
+		0 0 16px 4px rgba(246, 59, 205, 0.4),
+		inset 1px 1px 2px rgba(255, 255, 255, 0.5);
+	transform: translateY(-1px);
+}
+
+.btn-glow-magenta:active {
+	background: radial-gradient(
+		circle at 50% 50%,
+		#f63bcd 0%,
+		#d428b0 50%,
+		#c020a0 100%
+	);
+	box-shadow:
+		-1px -1px 4px rgba(255, 255, 255, 0.5),
+		1px 1px 4px rgba(0, 0, 0, 0.1),
+		0 0 6px 1px rgba(246, 59, 205, 0.3),
+		inset 2px 2px 4px rgba(0, 0, 0, 0.15);
+	transform: translateY(1px);
+}
+
+/* Magenta button - Dark mode */
+.dark .btn-glow-magenta {
+	background: radial-gradient(
+		circle at 35% 35%,
+		#ff6fdc 0%,
+		#f63bcd 40%,
+		#d428b0 100%
+	);
+	border: 1px solid rgba(246, 59, 205, 0.5);
+	box-shadow:
+		-4px -4px 10px rgba(50, 60, 95, 0.3),
+		4px 4px 12px rgba(0, 0, 0, 0.5),
+		0 0 12px 3px rgba(246, 59, 205, 0.3),
+		inset 1px 1px 2px rgba(255, 255, 255, 0.25);
+	color: #ffffff;
+}
+
+.dark .btn-glow-magenta:hover {
+	box-shadow:
+		-5px -5px 12px rgba(50, 60, 95, 0.35),
+		5px 5px 14px rgba(0, 0, 0, 0.55),
+		0 0 18px 5px rgba(246, 59, 205, 0.4),
+		inset 1px 1px 2px rgba(255, 255, 255, 0.3);
+	transform: translateY(-1px);
+}
+
+.dark .btn-glow-magenta:active {
+	background: radial-gradient(
+		circle at 50% 50%,
+		#f63bcd 0%,
+		#d428b0 50%,
+		#c020a0 100%
+	);
+	box-shadow:
+		-2px -2px 6px rgba(50, 60, 95, 0.2),
+		2px 2px 6px rgba(0, 0, 0, 0.4),
+		0 0 8px 2px rgba(246, 59, 205, 0.25),
+		inset 3px 3px 6px rgba(0, 0, 0, 0.25);
+	transform: translateY(1px);
+}
+
+/* Blue button - Light mode */
+.btn-glow-blue {
+	background: radial-gradient(
+		circle at 35% 35%,
+		#6fd0fa 0%,
+		#3bbff6 40%,
+		#28a8d4 100%
+	);
+	border: 1px solid rgba(59, 191, 246, 0.6);
+	box-shadow:
+		-3px -3px 8px rgba(255, 255, 255, 0.7),
+		3px 3px 8px rgba(0, 0, 0, 0.15),
+		0 0 10px 2px rgba(59, 191, 246, 0.3),
+		inset 1px 1px 2px rgba(255, 255, 255, 0.4);
+	color: #111425;
+}
+
+.btn-glow-blue:hover {
+	box-shadow:
+		-4px -4px 10px rgba(255, 255, 255, 0.8),
+		4px 4px 10px rgba(0, 0, 0, 0.18),
+		0 0 16px 4px rgba(59, 191, 246, 0.4),
+		inset 1px 1px 2px rgba(255, 255, 255, 0.5);
+	transform: translateY(-1px);
+}
+
+.btn-glow-blue:active {
+	background: radial-gradient(
+		circle at 50% 50%,
+		#3bbff6 0%,
+		#28a8d4 50%,
+		#2098c4 100%
+	);
+	box-shadow:
+		-1px -1px 4px rgba(255, 255, 255, 0.5),
+		1px 1px 4px rgba(0, 0, 0, 0.1),
+		0 0 6px 1px rgba(59, 191, 246, 0.3),
+		inset 2px 2px 4px rgba(0, 0, 0, 0.15);
+	transform: translateY(1px);
+}
+
+/* Blue button - Dark mode */
+.dark .btn-glow-blue {
+	background: radial-gradient(
+		circle at 35% 35%,
+		#6fd0fa 0%,
+		#3bbff6 40%,
+		#28a8d4 100%
+	);
+	border: 1px solid rgba(59, 191, 246, 0.5);
+	box-shadow:
+		-4px -4px 10px rgba(50, 60, 95, 0.3),
+		4px 4px 12px rgba(0, 0, 0, 0.5),
+		0 0 12px 3px rgba(59, 191, 246, 0.3),
+		inset 1px 1px 2px rgba(255, 255, 255, 0.25);
+	color: #111425;
+}
+
+.dark .btn-glow-blue:hover {
+	box-shadow:
+		-5px -5px 12px rgba(50, 60, 95, 0.35),
+		5px 5px 14px rgba(0, 0, 0, 0.55),
+		0 0 18px 5px rgba(59, 191, 246, 0.4),
+		inset 1px 1px 2px rgba(255, 255, 255, 0.3);
+	transform: translateY(-1px);
+}
+
+.dark .btn-glow-blue:active {
+	background: radial-gradient(
+		circle at 50% 50%,
+		#3bbff6 0%,
+		#28a8d4 50%,
+		#2098c4 100%
+	);
+	box-shadow:
+		-2px -2px 6px rgba(50, 60, 95, 0.2),
+		2px 2px 6px rgba(0, 0, 0, 0.4),
+		0 0 8px 2px rgba(59, 191, 246, 0.25),
+		inset 3px 3px 6px rgba(0, 0, 0, 0.25);
+	transform: translateY(1px);
+}
+
+/* White button - for dark backgrounds - Light mode */
+.btn-glow-white {
+	background: radial-gradient(
+		circle at 35% 35%,
+		#ffffff 0%,
+		#f5f7fa 40%,
+		#e8ecf0 100%
+	);
+	border: 1px solid rgba(255, 255, 255, 0.5);
+	box-shadow:
+		-3px -3px 8px rgba(255, 255, 255, 0.9),
+		3px 3px 8px rgba(0, 0, 0, 0.12),
+		0 0 8px 1px rgba(255, 255, 255, 0.2),
+		inset 1px 1px 2px rgba(255, 255, 255, 0.6);
+	color: #111425;
+}
+
+.btn-glow-white:hover {
+	box-shadow:
+		-4px -4px 10px rgba(255, 255, 255, 1),
+		4px 4px 10px rgba(0, 0, 0, 0.15),
+		0 0 12px 2px rgba(255, 255, 255, 0.25),
+		inset 1px 1px 2px rgba(255, 255, 255, 0.7);
+	transform: translateY(-1px);
+}
+
+.btn-glow-white:active {
+	background: radial-gradient(
+		circle at 50% 50%,
+		#f5f7fa 0%,
+		#e8ecf0 50%,
+		#dce0e4 100%
+	);
+	box-shadow:
+		-1px -1px 4px rgba(255, 255, 255, 0.7),
+		1px 1px 4px rgba(0, 0, 0, 0.1),
+		0 0 4px 1px rgba(255, 255, 255, 0.15),
+		inset 2px 2px 4px rgba(0, 0, 0, 0.08);
+	transform: translateY(1px);
+}
+
+/* White button - Dark mode */
+.dark .btn-glow-white {
+	background: radial-gradient(
+		circle at 35% 35%,
+		#ffffff 0%,
+		#f5f7fa 40%,
+		#e8ecf0 100%
+	);
+	border: 1px solid rgba(255, 255, 255, 0.3);
+	box-shadow:
+		-4px -4px 10px rgba(50, 60, 95, 0.3),
+		4px 4px 12px rgba(0, 0, 0, 0.5),
+		0 0 10px 2px rgba(255, 255, 255, 0.12),
+		inset 1px 1px 2px rgba(255, 255, 255, 0.4);
+	color: #111425;
+}
+
+.dark .btn-glow-white:hover {
+	box-shadow:
+		-5px -5px 12px rgba(50, 60, 95, 0.35),
+		5px 5px 14px rgba(0, 0, 0, 0.55),
+		0 0 16px 3px rgba(255, 255, 255, 0.18),
+		inset 1px 1px 2px rgba(255, 255, 255, 0.5);
+	transform: translateY(-1px);
+}
+
+.dark .btn-glow-white:active {
+	background: radial-gradient(
+		circle at 50% 50%,
+		#f5f7fa 0%,
+		#e8ecf0 50%,
+		#dce0e4 100%
+	);
+	box-shadow:
+		-2px -2px 6px rgba(50, 60, 95, 0.2),
+		2px 2px 6px rgba(0, 0, 0, 0.4),
+		0 0 6px 1px rgba(255, 255, 255, 0.1),
+		inset 3px 3px 6px rgba(0, 0, 0, 0.15);
+	transform: translateY(1px);
+}
+
+/* Button size variants */
+.btn-glow-sm {
+	padding: 0.5rem 1rem;
+	font-size: 0.875rem;
+}
+
+.btn-glow-lg {
+	padding: 1rem 2rem;
+	font-size: 1.125rem;
 }
